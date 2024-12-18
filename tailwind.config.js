@@ -23,9 +23,27 @@ module.exports = {
     'motion-ease-spring-bouncier',
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        fadeInAndMove: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateX(-50%) translateY(20px) rotate(-20deg)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateX(0) translateY(0) rotate(0)',
+          },
+        },
+      },
+      animation: {
+        fadeInAndMove: 'fadeInAndMove 0.8s ease-out forwards',
+      },
+    },
   },
   plugins: [
-    require('tailwindcss-motion')
+    require('tailwindcss-motion'),
+    require('tailwind-scrollbar'),
+    require('@tailwindcss/typography'),
   ],
 }

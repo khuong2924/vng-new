@@ -4,6 +4,7 @@
     
     <main class="pt-16">   
       <hero-section></hero-section>
+      <image-gallery></image-gallery>
       <schedule-modal v-if="showScheduleModal" @close="closeScheduleModal" />
       <tour-section></tour-section>
       <contact-section></contact-section>
@@ -18,6 +19,7 @@ import HeaderComponent from './components/Header.vue'
 import ScheduleModal from './components/ScheduleModal.vue'
 import TourSection from './components/TourSection.vue'
 import ContactSection from './components/ContactSection.vue'
+import ImageGallery from './components/ImageGallery.vue' // Add this import
 import SiteFooter from './components/Footer.vue'
 import HeroSection from './components/HeroSection.vue'
 import AOS from 'aos'
@@ -31,7 +33,8 @@ export default {
     ScheduleModal,
     TourSection,
     ContactSection,
-    SiteFooter
+    SiteFooter,
+    ImageGallery
   },
   data() {
     return {
