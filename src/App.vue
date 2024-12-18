@@ -4,15 +4,9 @@
     
     <main class="pt-16">   
       <hero-section></hero-section>
-      <plane-animation></plane-animation>
+      <schedule-modal v-if="showScheduleModal" @close="closeScheduleModal" />
       <tour-section></tour-section>
       <contact-section></contact-section>
-
-      <!-- Schedule Modal -->
-      <schedule-modal 
-        v-if="showScheduleModal" 
-        @close="closeScheduleModal"
-      ></schedule-modal>
     </main>
 
     <site-footer></site-footer>
@@ -21,19 +15,19 @@
 
 <script>
 import HeaderComponent from './components/Header.vue'
-import HeroSection from './components/HeroSection.vue'
-import PlaneAnimation from './components/PlaneAnimation.vue'
 import ScheduleModal from './components/ScheduleModal.vue'
 import TourSection from './components/TourSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/Footer.vue'
+import HeroSection from './components/HeroSection.vue'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 export default {
   name: 'App',
   components: {
     HeaderComponent,
     HeroSection,
-    PlaneAnimation,
     ScheduleModal,
     TourSection,
     ContactSection,
@@ -51,10 +45,17 @@ export default {
     closeScheduleModal() {
       this.showScheduleModal = false
     }
+  },
+  mounted() {
+    AOS.init()
   }
 }
 </script>
 
-<style scoped>
-/* Các style chung cho App */
+<style>
+#app {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 </style>

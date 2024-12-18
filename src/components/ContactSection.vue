@@ -3,31 +3,32 @@
     <div class="max-w-7xl mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
         <!-- Contact Info -->
-        <div class="bg-white p-8 rounded-2xl shadow-2xl transform hover:-translate-y-2 transition-all duration-300" 
-             data-aos="fade-right" 
-             data-aos-duration="1000">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl transform hover:-translate-y-2 transition-all duration-300" data-aos="fade-right" data-aos-duration="1000">
           <h3 class="text-3xl font-bold mb-8 text-blue-600 flex items-center">
             <i class="fas fa-address-card mr-3"></i>Thông tin liên hệ
           </h3>
           <div class="space-y-6">
-            <contact-info-item 
-              v-for="item in contactInfo" 
-              :key="item.id"
-              :icon="item.icon"
-              :title="item.title"
-              :content="item.content"
-            />
+            <!-- Contact details -->
+            <ContactDetail icon="map-marker-alt" title="Địa chỉ" text="93/8 Phạm Văn Hai, Phường 3, Quận Tân Bình, VietNam" />
+            <ContactDetail icon="phone-alt" title="Phone" text="08 1800 2728" />
+            <ContactDetail icon="envelope" title="Email" text="vngrouptourist@gmail.com" />
           </div>
         </div>
 
         <!-- Contact Form -->
-        <div class="bg-white p-8 rounded-2xl shadow-2xl transform hover:-translate-y-2 transition-all duration-300" 
-             data-aos="fade-left" 
-             data-aos-duration="1000">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl transform hover:-translate-y-2 transition-all duration-300" data-aos="fade-left" data-aos-duration="1000">
           <h3 class="text-3xl font-bold mb-8 text-blue-600 flex items-center">
             <i class="fas fa-paper-plane mr-3"></i>Liên hệ với chúng tôi
           </h3>
-          <contact-form @submit="handleSubmit" />
+          <form @submit.prevent="submitForm" class="space-y-6">
+            <FormInput label="Họ tên" type="text" icon="user" v-model="formData.name" />
+            <FormInput label="Email" type="email" icon="envelope" v-model="formData.email" />
+            <FormTextarea label="Nội dung" icon="comment" v-model="formData.message" />
+            <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 flex items-center justify-center space-x-2">
+              <i class="fas fa-paper-plane"></i>
+              <span>Gửi</span>
+            </button>
+          </form>
         </div>
       </div>
     </div>
@@ -35,44 +36,31 @@
 </template>
 
 <script>
-import ContactInfoItem from './ContactInfoItem.vue'
-import ContactForm from './ContactForm.vue'
+import ContactDetail from './ContactDetail.vue'
+import FormInput from './FormInput.vue'
+import FormTextarea from './FormTextarea.vue'
 
 export default {
   name: 'ContactSection',
   components: {
-    ContactInfoItem,
-    ContactForm
+    ContactDetail,
+    FormInput,
+    FormTextarea
   },
   data() {
     return {
-      contactInfo: [
-        {
-          id: 1,
-          icon: 'fa-map-marker-alt',
-          title: 'Địa chỉ',
-          content: '93/8 Phạm Văn Hai, Phường 3, Quận Tân Bình, VietNam'
-        },
-        {
-          id: 2,
-          icon: 'fa-phone-alt',
-          title: 'Phone',
-          content: '08 1800 2728'
-        },
-        {
-          id: 3,
-          icon: 'fa-envelope',
-          title: 'Email',
-          content: 'vngrouptourist@gmail.com'
-        }
-      ]
+      formData: {
+        name: '',
+        email: '',
+        message: ''
+      }
     }
   },
   methods: {
-    handleSubmit(formData) {
+    submitForm() {
       // Handle form submission
-      console.log('Form submitted:', formData)
+      console.log('Form submitted:', this.formData)
     }
   }
 }
-</script> 
+</script>
