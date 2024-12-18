@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Tour Listings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #3b82f6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .filter-item {
+            transition: all 0.3s ease;
+        }
+        .filter-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .tour-card {
+            transition: all 0.3s ease;
+        }
+        .tour-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .tour-card:hover .card-overlay {
+            opacity: 1;
+        }
+        .view-details-btn {
+            transition: all 0.3s ease;
+        }
+        .view-details-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white/90 backdrop-blur-md shadow-lg fixed w-full z-50 transition-all duration-500 hover:shadow-2xl h-20 flex items-center justify-between px-4">
+        <!-- Thẻ Wanderlust -->
+        <div class="logo d-flex align-items-center me-auto flex-shrink-0 flex items-center transform hover:scale-110 transition-transform px-8 duration-500">
+            <img src="img/logo-ngang-khong-nen.png" alt="Wanderlust Logo" class="logo d-flex align-items-center me-auto w-auto max-h-40 hover:scale-105 transition-transform duration-500 object-contain">
+        </div>
+    
+        <!-- Thành phần còn lại -->
+        <div class="flex px-8 items-center space-x-6">
+            <a href="#" class="text-blue-600 hover:text-blue-800 px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-blue-100 hover:scale-105 transform">Trang chủ</a>
+            <!-- <a href="#introduction" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-blue-100 hover:scale-105 transform">Giới thiệu</a> -->
+            <a href="#" class="text-blue-600 hover:text-blue-600 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-blue-100 hover:scale-105 transform">Du lịch</a>
+            <button onclick="openScheduleModal()" 
+                class="bg-transparent text-blue-600 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-blue-100 hover:scale-105 transform flex items-center border border-blue-600">
+                <i class="fas fa-calendar-alt mr-2"></i>
+                <span>Lịch khởi hành</span>
+            </button>
+            <a href="#" data-aos-delay="300" data-aos="zoom-in" class="motion-preset-flomoji-🚀 inline-flex items-center px-4 py-2 border-2 border-blue-500 text-lg font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-all duration-500 transform hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/50">
+               Đi ngay
+                <svg class="ml-2 -mr-1 w-6 h-6 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </a>    
+        </div>
+    </nav>
+
+
+    <div x-data="tourApp()">
+
+            <section class="relative h-screen flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 w-full h-full">
+                    <div class="relative h-full w-full">
+                        <div class="motion-preset-pop absolute inset-0 transition-all duration-1000 ease-in-out" id="mainImageContainer">
+                            <img src="https://images.unsplash.com/photo-1528127269322-539801943592" alt="Vietnam Landscape" class="w-full h-full object-cover transition-all duration-1000 ease-in-out transform scale-100" id="mainImage">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60"></div>
+                    </div>
+                </div>
+                <div class="absolute bottom-8 left-0 right-0 flex justify-center items-center space-x-4 px-4 py-4">
+                    <button onclick="navigateImages('prev')" class="bg-white/30 hover:bg-white/50 text-white p-2 rounded-full backdrop-blur-sm transition-all duration-300 transform hover:scale-110">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <div class="flex space-x-4 overflow-x-auto scroll-smooth" id="imageScroller">
+                        <img src="https://images.unsplash.com/photo-1528127269322-539801943592" alt="Vietnam Landscape 1" class="w-24 h-16 object-cover rounded-lg cursor-pointer hover:scale-110 transition-transform duration-300 border-2 border-transparent hover:border-white" onclick="changeMainImage(this.src)">
+                        <img src="https://i.pinimg.com/736x/2f/f2/98/2ff298557e1c70edeaa44887dcda9c5c.jpg" alt="Vietnam Landscape 2" class="w-24 h-16 object-cover rounded-lg cursor-pointer hover:scale-110 transition-transform duration-300 border-2 border-transparent hover:border-white" onclick="changeMainImage(this.src)">
+                        <img src="https://i.pinimg.com/736x/fc/94/12/fc94123c91b63e453980abd64b2925cd.jpg" alt="Vietnam Landscape 3" class="w-24 h-16 object-cover rounded-lg cursor-pointer hover:scale-110 transition-transform duration-300 border-2 border-transparent hover:border-white" onclick="changeMainImage(this.src)">
+                        <img src="https://i.pinimg.com/736x/96/9d/1c/969d1cd1ab6fc0e168d0a3105519ea7e.jpg" alt="Vietnam Landscape 4" class="w-24 h-16 object-cover rounded-lg cursor-pointer hover:scale-110 transition-transform duration-300 border-2 border-transparent hover:border-white" onclick="changeMainImage(this.src)">
+                    </div>
+                    <button onclick="navigateImages('next')" class="bg-white/30 hover:bg-white/50 text-white p-2 rounded-full backdrop-blur-sm transition-all duration-300 transform hover:scale-110">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>   
+            </section>
+
+            <script>
+                let currentImageIndex = 0;
+                const images = document.querySelectorAll('#imageScroller img');
+        
+                function changeMainImage(newSrc) {
+                    const mainImage = document.getElementById('mainImage');
+                    const container = document.getElementById('mainImageContainer');
+                    
+                    container.style.opacity = '0';
+                    mainImage.style.transform = 'scale(1.1) rotateY(10deg)';
+                    
+                    setTimeout(() => {
+                        mainImage.src = newSrc;
+                        container.style.opacity = '1';
+                        mainImage.style.transform = 'scale(1) rotateY(0deg)';
+                    }, 500);
+                }
+        
+                function navigateImages(direction) {
+                    const scroller = document.getElementById('imageScroller');
+                    const scrollAmount = direction === 'next' ? 100 : -100;
+                    scroller.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            </script>
+
+       <!-- Banner and Explore Moments Section -->
+       <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="w-full md:w-7/12">
+                    <div class="swiper mySwiper rounded-lg overflow-hidden" data-aos="fade-right">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="https://i.pinimg.com/736x/45/85/70/45857057981d48c1a63e2b9a11539f16.jpg" alt="Tour 1" class="w-full h-64 object-cover">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://i.pinimg.com/736x/9d/a5/16/9da5160cee7b4b3b47ab6e69f274dfbf.jpg" alt="Tour 2" class="w-full h-64 object-cover">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://i.pinimg.com/736x/2d/c4/de/2dc4de01a14d85983308680437d90021.jpg" alt="Tour 3" class="w-full h-64 object-cover">
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="w-full md:w-5/12 flex flex-col justify-end items-center relative" data-aos="fade-left">
+                    <!-- Hình ảnh phủ hết thẻ div -->
+                    <img src="https://i.pinimg.com/736x/18/00/b2/1800b2508bcc8553d79fcd7a0fb57a2e.jpg" alt="Explore Moments" class="w-full h-full object-cover rounded-lg mb-4 absolute inset-0">
+                    
+                    <!-- Lớp overlay cho phần nội dung (nền mờ) -->
+                    <div class="absolute inset-0 bg-black opacity-30 rounded-lg"></div>
+                
+                    <!-- Nội dung chữ và nút nằm gần cạnh dưới -->
+                    <div class="absolute bottom-4 w-full flex flex-col justify-center items-center text-center text-white z-10">
+                        <h3 class="text-xl font-bold mb-3 text-shadow-lg animate__animated animate__fadeInUp gradient-text">Explore Moments</h3>
+                        <button @click="exploreMoments" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center mx-auto relative overflow-hidden group">
+                            <span class="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                            <i class="fas fa-camera-retro mr-2 relative z-10"></i>
+                            <span class="relative z-10">Explore <span x-text="displayedMoments"></span>+ Moments</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- Enhanced Filter Section -->
+        <section class="bg-gradient-to-br
+        p-4" x-data="tourFilter()" x-init="AOS.init();">
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-3xl shadow-2xl p-8 mb-0" data-aos="fade-up" data-aos-delay="200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                        <div class="space-y-2" data-aos="fade-right" data-aos-delay="300">
+                            <label for="location" class="block text-sm font-medium text-gray-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                Location
+                            </label>
+                            <select id="location" x-model="filters.location" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-full transition duration-300 ease-in-out hover:border-indigo-300">
+                                <option value="">All Locations</option>
+                                <option>Paris</option>
+                                <option>Rome</option>
+                                <option>Barcelona</option>
+                                <option>London</option>
+                            </select>
+                        </div>
+                        
+                        <div class="space-y-2" data-aos="fade-right" data-aos-delay="400">
+                            <label for="duration" class="block text-sm font-medium text-gray-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Duration
+                            </label>
+                            <select id="duration" x-model="filters.duration" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-full transition duration-300 ease-in-out hover:border-indigo-300">
+                                <option value="">Any Duration</option>
+                                <option value="1-3">1-3 days</option>
+                                <option value="4-7">4-7 days</option>
+                                <option value="8+">8+ days</option>
+                            </select>
+                        </div>
+                        
+                        <div class="space-y-2" data-aos="fade-right" data-aos-delay="500">
+                            <label for="budget" class="block text-sm font-medium text-gray-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Budget
+                            </label>
+                            <select id="budget" x-model="filters.budget" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-full transition duration-300 ease-in-out hover:border-indigo-300">
+                                <option value="">Any Budget</option>
+                                <option value="0-1000">$0 - $1000</option>
+                                <option value="1001-2000">$1001 - $2000</option>
+                                <option value="2001-3000">$2001 - $3000</option>
+                                <option value="3001+">$3001+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="space-y-2" data-aos="fade-left" data-aos-delay="600">
+                            <label for="sort" class="block text-sm font-medium text-gray-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                                </svg>
+                                Sort By
+                            </label>
+                            <select id="sort" x-model="sortOrder" @change="toggleSortOrder" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-full transition duration-300 ease-in-out hover:border-indigo-300">
+                                <option value="price_asc">Price: Low to High</option>
+                                <option value="price_desc">Price: High to Low</option>
+                                <option value="duration_asc">Duration: Short to Long</option>
+                                <option value="duration_desc">Duration: Long to Short</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex items-end justify-center lg:justify-start" data-aos="fade-left" data-aos-delay="700">
+                            <button @click="applyFilters" class="w-full lg:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2 rounded-full text-lg font-semibold hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                                Find Tours
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function tourFilter() {
+                    return {
+                        filters: {
+                            location: '',
+                            duration: '',
+                            budget: ''
+                        },
+                        sortOrder: 'price_asc',
+                        toggleSortOrder() {
+                            // This function is now handled by the select element
+                        },
+                        applyFilters() {
+                            console.log('Applying filters:', this.filters);
+                            console.log('Sort order:', this.sortOrder);
+                            // Here you would typically fetch and update the tour list based on the filters
+                        }
+                    }
+                }
+            </script>
+        </section>
+  
+  <!-- Enhanced Tour List Section -->
+        <section class="py-12 bg-white">
+            <div class="max-w-6xl mx-auto px-4 md:px-8">
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+                    <template x-for="tour in filteredTours" :key="tour.id">
+                        <div class="tour-card bg-white rounded-lg shadow-md overflow-hidden" data-aos="fade-up">
+                            <div class="relative">
+                                <img :src="tour.image" :alt="tour.name" class="w-full h-48 object-cover">
+                                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 card-overlay">
+                                    <button class="view-details-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center">
+                                        <i class="fas fa-info-circle mr-2"></i> View Details
+                                    </button>
+                                </div>
+                                <span class="absolute top-2 left-2 bg-blue-500 bg-opacity-60 text-white px-3 py-1 rounded-full flex items-center text-sm font-semibold transition duration-300 ease-in-out transform hover:bg-opacity-80 hover:scale-105">
+                                    <i :class="getVehicleIcon(tour.vehicle)" class="mr-1"></i>
+                                    <span x-text="tour.vehicle"></span>
+                                </span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-xl font-semibold mb-2" x-text="tour.name"></h3>
+                                <p class="text-gray-600 mb-2 flex items-center">
+                                    <i class="far fa-clock mr-2"></i>
+                                    <span x-text="tour.time"></span>
+                                </p>
+                                <p class="text-gray-600 mb-2 flex items-center">
+                                    <i class="fas fa-plane-departure mr-2"></i>
+                                    <span x-text="tour.departure"></span>
+                                </p>
+                                <p class="text-lg font-bold text-blue-500 mb-4 flex items-center">
+                                    <i class="fas fa-tag mr-2"></i>
+                                    <span x-text="tour.price + ' đ'"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+            <div class="container mx-auto px-4 py-8">
+                <!-- Title Section -->
+                <div class="flex justify-between items-center mb-8 animate-fade-in-down">
+                    <h1 class="text-3xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:scale-105 transition-all duration-300">Cẩm nang du lịch</h1>
+                    <button class="px-8 py-4 bg-gradient-to-r from-indigo-500 via-blue-500 to-teal-500 text-white rounded-full hover:scale-110 transform transition-all duration-300 ease-in-out shadow-lg hover:shadow-2xl font-semibold flex items-center gap-3 hover:rotate-1">
+                        <span class="text-lg">View All</span>
+                        <!-- Sử dụng icon mới từ Heroicons (arrow-right) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                    
+                </div>
+
+                <!-- Main Content Section -->
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- Video Section -->
+                    <div class="lg:w-1/4 bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-500 hover:shadow-3xl border-2 border-gradient-to-r from-blue-200 to-purple-200 backdrop-filter backdrop-blur-lg">
+                        <div class="aspect-w-9 aspect-h-16 relative hover:opacity-90 transition-opacity duration-300">
+                            <!-- Sử dụng iframe để chèn video TikTok -->
+                            <iframe class="absolute inset-0 w-full h-full" 
+                                    src="https://www.tiktok.com/embed/7254047822364806405" 
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- Travel Guides List Section -->
+                    <div class="lg:w-3/4 relative">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Guide Item 1 -->
+                            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-3xl hover:scale-105 group border-2 border-gradient-to-r from-blue-200 to-purple-200 backdrop-filter backdrop-blur-lg">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b" alt="Visa Tips Guide" class="w-full h-48 object-cover group-hover:scale-125 group-hover:rotate-3 transition-transform duration-700">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+                                <div class="p-6 text-center transform group-hover:-translate-y-2 transition-transform duration-300">
+                                    <h3 class="font-bold text-gray-800 text-xl group-hover:text-blue-600 transition-colors duration-300">Visa Tips</h3>
+                                    <p class="text-gray-600 text-sm mt-2 group-hover:text-gray-800">Essential visa guidelines for travelers</p>
+                                </div>
+                            </div>
+
+                            <!-- Guide Item 2 -->
+                            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-3xl hover:scale-105 group border-2 border-gradient-to-r from-blue-200 to-purple-200 backdrop-filter backdrop-blur-lg">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800" alt="Travel Outfits Guide" class="w-full h-48 object-cover group-hover:scale-125 group-hover:rotate-3 transition-transform duration-700">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+                                <div class="p-6 text-center transform group-hover:-translate-y-2 transition-transform duration-300">
+                                    <h3 class="font-bold text-gray-800 text-xl group-hover:text-purple-600 transition-colors duration-300">Travel Outfits</h3>
+                                    <p class="text-gray-600 text-sm mt-2 group-hover:text-gray-800">Perfect outfit suggestions for your journey</p>
+                                </div>
+                            </div>
+
+                            <!-- Guide Item 3 -->
+                            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-3xl hover:scale-105 group border-2 border-gradient-to-r from-blue-200 to-purple-200 backdrop-filter backdrop-blur-lg">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1528127269322-539801943592" alt="Vietnam Attractions" class="w-full h-48 object-cover group-hover:scale-125 group-hover:rotate-3 transition-transform duration-700">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+                                <div class="p-6 text-center transform group-hover:-translate-y-2 transition-transform duration-300">
+                                    <h3 class="font-bold text-gray-800 text-xl group-hover:text-pink-600 transition-colors duration-300">Vietnam Attractions</h3>
+                                    <p class="text-gray-600 text-sm mt-2 group-hover:text-gray-800">Must-visit places in Vietnam</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Button -->
+                        <button aria-label="View next travel guides" class="absolute -right-4 top-1/2 transform -translate-y-1/2 bg-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 group border-2 border-gradient-to-r from-blue-200 to-purple-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 group-hover:text-purple-600 transition-colors duration-300 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function tourApp() {
+            return {
+                tours: [
+                    { id: 1, name: 'European Adventure', time: '10 days', departure: 'Hà Nội', price: 2500, image: 'https://i.pinimg.com/736x/c9/73/dc/c973dca3712cfd6d8e14948326864bf8.jpg', vehicle: 'Car' },
+                    { id: 2, name: 'Asian Explorer', time: '14 days', departure: 'TP HCM', price: 3000, image: 'https://i.pinimg.com/736x/8c/fe/0f/8cfe0f3a09fa814e33a0279719fcc832.jpg', vehicle: 'Train' },
+                    { id: 3, name: 'American Road Trip', time: '7 days', departure: 'Hà Nội', price: 1800, image: 'https://i.pinimg.com/736x/39/4b/a5/394ba570534bd5f7de52eb3193b75951.jpg', vehicle: 'Car' },
+                    { id: 4, name: 'African Safari', time: '8 days', departure: 'TP HCM', price: 3500, image: 'https://i.pinimg.com/736x/82/28/b9/8228b9f13512dc1f7766e12b89a25986.jpg', vehicle: 'Car' },
+                   
+                ],
+                filters: {
+                    location: '',
+                    timePeriod: '',
+                    budget: ''
+                },
+                sortOrder: '',
+                totalMoments: 150,
+                displayedMoments: 0,
+                get filteredTours() {
+                    let filtered = this.tours;
+                    if (this.filters.location) {
+                        filtered = filtered.filter(tour => tour.name.toLowerCase().includes(this.filters.location));
+                    }
+                    if (this.filters.timePeriod) {
+                        filtered = filtered.filter(tour => tour.time.toLowerCase().includes(this.filters.timePeriod));
+                    }
+                    if (this.filters.budget) {
+                        const budgetRanges = {
+                            'budget': [0, 2000],
+                            'mid-range': [2001, 3000],
+                            'luxury': [3001, Infinity]
+                        };
+                        const range = budgetRanges[this.filters.budget];
+                        filtered = filtered.filter(tour => tour.price >= range[0] && tour.price <= range[1]);
+                    }
+                    return filtered;
+                },
+                sortTours() {
+                    if (this.sortOrder === 'priceLowToHigh') {
+                        this.tours.sort((a, b) => a.price - b.price);
+                    } else if (this.sortOrder === 'priceHighToLow') {
+                        this.tours.sort((a, b) => b.price - a.price);
+                    }
+                },
+                exploreMoments() {
+                    const duration = 2000;
+                    const interval = 20;
+                    const increment = Math.ceil(this.totalMoments / (duration / interval));
+                    const timer = setInterval(() => {
+                        this.displayedMoments = Math.min(this.displayedMoments + increment, this.totalMoments);
+                        if (this.displayedMoments >= this.totalMoments) {
+                            clearInterval(timer);
+                        }
+                    }, interval);
+                },
+                getVehicleIcon(vehicle) {
+                    const icons = {
+                        'Bus': 'fas fa-bus',
+                        'Train': 'fas fa-train',
+                        'Car': 'fas fa-car',
+                        'Jeep': 'fas fa-truck',
+                        '4x4': 'fas fa-truck-monster'
+                    };
+                    return icons[vehicle] || 'fas fa-car';
+                },
+                init() {
+                    this.exploreMoments();
+                    new Swiper('.mySwiper', {
+                        loop: true,
+                        autoplay: {
+                            delay: 3000,
+                            disableOnInteraction: false,
+                        },
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                    });
+                    AOS.init();
+                    
+                    gsap.from(".gradient-text", {
+                        duration: 2,
+                        opacity: 0,
+                        y: -50,
+                        ease: "power3.out"
+                    });
+                    
+                    gsap.from(".tour-card", {
+                        duration: 1,
+                        opacity: 0,
+                        y: 50,
+                        stagger: 0.2,
+                        ease: "power3.out"
+                    });
+
+                    gsap.from(".filter-item", {
+                        duration: 0.8,
+                        opacity: 0,
+                        y: 20,
+                        stagger: 0.1,
+                        ease: "power3.out"
+                    });
+                    // Add GSAP animation for the hero section
+                    gsap.from(".hero-image", {
+                        duration: 1.5,
+                        scale: 1.1,
+                        opacity: 0,
+                        ease: "power3.out"
+                    });
+
+                    gsap.from(".hero-content", {
+                        duration: 1,
+                        y: 50,
+                        opacity: 0,
+                        delay: 0.5,
+                        ease: "power3.out"
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
