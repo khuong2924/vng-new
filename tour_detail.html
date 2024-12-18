@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BangKok - Pattya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .md\:col-span-2 {
+                grid-column: span 1;
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float {
+            animation: float 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+<nav class="bg-white/90 backdrop-blur-md shadow-lg fixed w-full z-50 transition-all duration-500 hover:shadow-2xl h-20 flex items-center justify-between px-4">
+    <!-- Thẻ Wanderlust -->
+    <div class="logo d-flex align-items-center me-auto flex-shrink-0 flex items-center transform hover:scale-110 transition-transform px-8 duration-500">
+        <img src="/src/assets/logo-ngang-khong-nen.png" alt="Wanderlust Logo" class="logo d-flex align-items-center me-auto w-auto max-h-40 hover:scale-105 transition-transform duration-500 object-contain">
+    </div>
+
+    <!-- Thành phần còn lại -->
+    <div class="flex px-8 items-center space-x-6">
+        <a href="#" class="text-blue-600 hover:text-blue-800 px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-blue-100 hover:scale-105 transform">Trang chủ</a>
+        <!-- <a href="#introduction" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-blue-100 hover:scale-105 transform">Giới thiệu</a> -->
+        <a href="#" class="text-blue-600 hover:text-blue-600 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-blue-100 hover:scale-105 transform">Du lịch</a>
+        <button onclick="openScheduleModal()"
+                class="bg-transparent text-blue-600 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-blue-100 hover:scale-105 transform flex items-center border border-blue-600">
+            <i class="fas fa-calendar-alt mr-2"></i>
+            <span>Lịch khởi hành</span>
+        </button>
+
+
+        <a href="#" data-aos-delay="300" data-aos="zoom-in" class="motion-preset-flomoji-🚀 inline-flex items-center px-4 py-2 border-2 border-blue-500 text-lg font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-all duration-500 transform hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/50">
+            Đi ngay
+            <svg class="ml-2 -mr-1 w-6 h-6 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+        </a>
+
+    </div>
+</nav>
+
+<main class="container mx-auto px-4 py-8">
+    <div class="grid md:grid-cols-3 gap-8 mt-16">
+        <div class="md:col-span-2">
+            <div class="relative h-[400px] overflow-hidden rounded-xl mb-8 group">
+                <div class="flex transition-transform duration-1000 ease-in-out transform h-full" id="carousel">
+                    <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21" alt="Beach view" class="carousel-image">
+                    <img src="https://images.unsplash.com/photo-1599640842225-85d111c60e6b" alt="Resort view" class="carousel-image">
+                    <img src="https://images.unsplash.com/photo-1602002418082-a4443e081dd1" alt="Ocean view" class="carousel-image">
+                    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6" alt="Sunset view" class="carousel-image">
+                    <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8" alt="Beach activities" class="carousel-image">
+                </div>
+                <button onclick="moveSlide('prev')" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-blue-600 p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110">
+                    <i class="fas fa-chevron-left text-xl"></i>
+                </button>
+                <button onclick="moveSlide('next')" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-blue-600 p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110">
+                    <i class="fas fa-chevron-right text-xl"></i>
+                </button>
+                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    <div class="flex space-x-2 carousel-indicators"></div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+
+            <h1 class="text-4xl font-bold mb-6 text-center font-poppins bg-gradient-to-r from-purple-400 via-blue-500 to-blue-500
+                text-transparent bg-clip-text
+                motion-scale-in-[0.5] motion-translate-x-in-[-120%] motion-translate-y-in-[-60%]
+                motion-opacity-in-[33%] motion-rotate-in-[-1080deg] motion-blur-in-[10px]
+                motion-delay-[0.38s]/scale motion-duration-[0.38s]/opacity
+                motion-duration-[1.20s]/rotate motion-duration-[0.05s]/blur
+                motion-delay-[0.60s]/blur motion-ease-spring-bouncier">
+                Paradise Island Tour Package
+            </h1>
+
+
+            <div class="bg-white rounded-xl p-6 shadow-lg mb-8 hover:shadow-xl transition-shadow duration-300">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="text-center p-4 border rounded-lg hover:border-blue-500 transition-colors duration-300">
+                        <i class="fas fa-clock text-2xl text-blue-500 mb-2"></i>
+                        <p class="text-gray-600">Thời gian</p>
+                        <p class="font-bold">5 ngày 4 đêm</p>
+                    </div>
+                    <div class="text-center p-4 border rounded-lg hover:border-blue-500 transition-colors duration-300">
+                        <i class="fas fa-plane-departure text-2xl text-blue-500 mb-2"></i>
+                        <p class="text-gray-600">Khởi hành</p>
+                        <p class="font-bold">9:00 AM</p>
+                        <p class="text-sm">July 15, 2024</p>
+                    </div>
+                    <div class="text-center p-4 border rounded-lg hover:border-blue-500 transition-colors duration-300">
+                        <i class="fas fa-users text-2xl text-blue-500 mb-2"></i>
+                        <p class="text-gray-600">Số chỗ còn lại</p>
+                        <p class="font-bold">12</p>
+                    </div>
+                    <div class="text-center p-4 border rounded-lg hover:border-blue-500 transition-colors duration-300">
+                        <i class="fas fa-map-marker-alt text-2xl text-blue-500 mb-2"></i>
+                        <p class="text-gray-600">Nơi xuất phát</p>
+                        <p class="font-bold">Thành Phố Hồ Chí Minh</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <h2 class="text-2xl font-bold mb-4 text-blue-600 border-b pb-2">Điểm nhấn hành trình</h2>
+                    <ul class="space-y-3">
+                        <li class="flex items-center space-x-3 bg-blue-50 p-3 rounded-lg">
+                            <i class="fas fa-umbrella-beach text-blue-500 text-xl"></i>
+                            <span>Private Beach Access</span>
+                        </li>
+                        <li class="flex items-center space-x-3 bg-blue-50 p-3 rounded-lg">
+                            <i class="fas fa-ship text-blue-500 text-xl"></i>
+                            <span>Sunset Cruise</span>
+                        </li>
+                        <li class="flex items-center space-x-3 bg-blue-50 p-3 rounded-lg">
+                            <i class="fas fa-fish text-blue-500 text-xl"></i>
+                            <span>Snorkeling Adventure</span>
+                        </li>
+                        <li class="flex items-center space-x-3 bg-blue-50 p-3 rounded-lg">
+                            <i class="fas fa-hotel text-blue-500 text-xl"></i>
+                            <span>Luxury Resort Stay</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <h2 class="text-2xl font-bold mb-4 text-purple-600 border-b pb-2">Quà tặng đi kèm</h2>
+                    <div class="space-y-4">
+                        <div class="bg-purple-50 p-4 rounded-lg flex items-center space-x-4">
+                            <div class="bg-purple-100 p-3 rounded-full">
+                                <i class="fas fa-gift text-purple-500 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-purple-700">Buffet nhà hàng 5 sao quốc tế Baiyoke Sky</h3>
+                                <p class="text-sm text-purple-600">Luxury beach kit & refreshments</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-purple-50 p-4 rounded-lg flex items-center space-x-4">
+                            <div class="bg-purple-100 p-3 rounded-full">
+                                <i class="fas fa-spa text-purple-500 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-purple-700">1 suất trải nghiệm Massage Thái cổ truyền</h3>
+                                <p class="text-sm text-purple-600">30-minute massage included</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-4">Lịch trình chuyến đi</h2>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-blue-500 pl-4 p-4 hover:bg-blue-50 relative group cursor-pointer transition-all duration-300" onclick="toggleDetails('day1')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-xl">Day 1</h3>
+                            <i class="fas fa-chevron-down text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                        <p class="text-gray-600 mb-2">Morning: Airport pickup & resort check-in<br>Afternoon: Welcome drinks & beach exploration<br>Evening: Sunset dinner cruise</p>
+                        <div id="day1" class="hidden bg-blue-50 mt-4 p-4 rounded-lg transition-all duration-300">
+                            <h4 class="font-semibold text-blue-700 mb-2">Detailed Schedule</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-sun text-yellow-500 mt-1"></i>
+                                    <div>
+                                        <span class="font-medium">Morning (8:00 AM - 12:00 PM)</span>
+                                        <p class="text-sm text-gray-600">VIP airport pickup service, luxury transfer to resort, welcome ceremony, room check-in with ocean view, resort tour</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-umbrella-beach text-orange-500 mt-1"></i>
+                                    <div>
+                                        <span class="font-medium">Afternoon (1:00 PM - 5:00 PM)</span>
+                                        <p class="text-sm text-gray-600">Welcome cocktail reception, beach orientation, free time for swimming and sunbathing, water sports introduction</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-moon text-indigo-500 mt-1"></i>
+                                    <div>
+                                        <span class="font-medium">Evening (6:00 PM - 10:00 PM)</span>
+                                        <p class="text-sm text-gray-600">Luxury catamaran sunset cruise, champagne service, gourmet dinner under the stars, live music entertainment</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 pl-4 p-4 hover:bg-blue-50 relative group cursor-pointer transition-all duration-300" onclick="toggleDetails('day2')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-xl">Day 2</h3>
+                            <i class="fas fa-chevron-down text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                        <p class="text-gray-600 mb-2">Morning: Snorkeling expedition<br>Afternoon: Beach activities<br>Evening: Beachside BBQ</p>
+                        <div id="day2" class="hidden bg-blue-50 mt-4 p-4 rounded-lg transition-all duration-300">
+                            <h4 class="font-semibold text-blue-700 mb-2">Detailed Schedule</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-fish text-blue-500 mt-1"></i>
+                                    <div>
+                                        <span class="font-medium">Morning (9:00 AM - 12:00 PM)</span>
+                                        <p class="text-sm text-gray-600">Professional snorkeling guide, equipment fitting, coral reef exploration, underwater photography session</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-volleyball-ball text-yellow-600 mt-1"></i>
+                                    <div>
+                                        <span class="font-medium">Afternoon (2:00 PM - 5:00 PM)</span>
+                                        <p class="text-sm text-gray-600">Beach volleyball tournament, kayaking, paddleboarding, beach yoga session</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-fire text-red-500 mt-1"></i>
+                                    <div>
+                                        <span class="font-medium">Evening (7:00 PM - 10:00 PM)</span>
+                                        <p class="text-sm text-gray-600">Beachside BBQ feast, fresh seafood selection, bonfire experience, acoustic live music</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 pl-4 p-4 hover:bg-blue-50 relative group cursor-pointer transition-all duration-300" onclick="toggleDetails('day3')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-xl">Day 3</h3>
+                            <i class="fas fa-chevron-down text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                        <p class="text-gray-600 mb-2">Morning: Island hiking<br>Afternoon: Spa treatment<br>Evening: Cultural show</p>
+                        <div id="day3" class="hidden bg-blue-50 mt-4 p-4 rounded-lg transition-all duration-300">
+                            <h4 class="font-semibold text-blue-700 mb-2">Detailed Schedule</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-hiking text-green-600 mt-1"></i>
+                                    <div>
+                                        <span class="font-medium">Morning (8:00 AM - 11:00 AM)</span>
+                                        <p class="text-sm text-gray-600">Guided nature trail hike, wildlife spotting, panoramic viewpoint visit, tropical fruit tasting</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-spa text-purple-500 mt-1"></i>
+                                    <div>
+                                        <span class="font-medium">Afternoon (2:00 PM - 5:00 PM)</span>
+                                        <p class="text-sm text-gray-600">Luxury spa treatment, aromatherapy massage, facial treatment, private jacuzzi session</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-theater-masks text-indigo-600 mt-1"></i>
+                                    <div>
+                                        <span class="font-medium">Evening (8:00 PM - 10:00 PM)</span>
+                                        <p class="text-sm text-gray-600">Traditional dance performance, local music show, cultural dinner, interactive workshops</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800 flex items-center"><i class="fas fa-plane-departure text-blue-600 mr-3"></i>Bảng giá và Ngày khởi hành</h2>
+                <div class="grid gap-6">
+                    <div class="border rounded-lg p-6 hover:border-blue-500 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-blue-600 mb-2">July 2024 Departures</h3>
+                                <div class="space-y-4">
+                                    <div class="bg-blue-50 p-4 rounded-lg transition-all hover:bg-blue-100">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="font-semibold text-blue-800">July 15, 2024</span>
+                                            <span class="text-green-600 font-bold">8 seats left</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div class="border-r">
+                                                <p class="text-sm text-gray-600">Outbound Flight AA1234</p>
+                                                <div class="flex items-center space-x-2">
+                                                    <i class="fas fa-plane-departure text-blue-500"></i>
+                                                    <span>MIA 08:00</span>
+                                                    <i class="fas fa-long-arrow-alt-right text-gray-400"></i>
+                                                    <span>PIS 11:30</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm text-gray-600">Return Flight AA1235</p>
+                                                <div class="flex items-center space-x-2">
+                                                    <i class="fas fa-plane-arrival text-blue-500"></i>
+                                                    <span>PIS 14:00</span>
+                                                    <i class="fas fa-long-arrow-alt-right text-gray-400"></i>
+                                                    <span>MIA 17:30</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 p-3 bg-white rounded-lg">
+                                            <h4 class="font-semibold text-gray-700 mb-2">Tour Package Pricing</h4>
+                                            <div class="grid grid-cols-3 gap-4">
+                                                <div class="text-center">
+                                                    <p class="text-sm text-gray-600">Adult (12+)</p>
+                                                    <p class="text-lg font-medium text-gray-500 line-through">$1,899</p>
+                                                    <p class="text-xl font-bold text-blue-600">$1,499</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="text-sm text-gray-600">Child (2-11)</p>
+                                                    <p class="text-lg font-medium text-gray-500 line-through">$1,399</p>
+                                                    <p class="text-xl font-bold text-blue-600">$999</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="text-sm text-gray-600">Infant (0-2)</p>
+                                                    <p class="text-lg font-medium text-gray-500 line-through">$399</p>
+                                                    <p class="text-xl font-bold text-blue-600">$299</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-blue-50 p-4 rounded-lg transition-all hover:bg-blue-100">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="font-semibold text-blue-800">July 22, 2024</span>
+                                            <span class="text-green-600 font-bold">12 seats left</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div class="border-r">
+                                                <p class="text-sm text-gray-600">Outbound Flight AA1236</p>
+                                                <div class="flex items-center space-x-2">
+                                                    <i class="fas fa-plane-departure text-blue-500"></i>
+                                                    <span>MIA 09:00</span>
+                                                    <i class="fas fa-long-arrow-alt-right text-gray-400"></i>
+                                                    <span>PIS 12:30</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm text-gray-600">Return Flight AA1237</p>
+                                                <div class="flex items-center space-x-2">
+                                                    <i class="fas fa-plane-arrival text-blue-500"></i>
+                                                    <span>PIS 15:00</span>
+                                                    <i class="fas fa-long-arrow-alt-right text-gray-400"></i>
+                                                    <span>MIA 18:30</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 p-3 bg-white rounded-lg">
+                                            <h4 class="font-semibold text-gray-700 mb-2">Tour Package Pricing</h4>
+                                            <div class="grid grid-cols-3 gap-4">
+                                                <div class="text-center">
+                                                    <p class="text-sm text-gray-600">Adult (12+)</p>
+                                                    <p class="text-lg font-medium text-gray-500 line-through">$1,899</p>
+                                                    <p class="text-xl font-bold text-blue-600">$1,499</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="text-sm text-gray-600">Child (2-11)</p>
+                                                    <p class="text-lg font-medium text-gray-500 line-through">$1,399</p>
+                                                    <p class="text-xl font-bold text-blue-600">$999</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="text-sm text-gray-600">Infant (0-2)</p>
+                                                    <p class="text-lg font-medium text-gray-500 line-through">$399</p>
+                                                    <p class="text-xl font-bold text-blue-600">$299</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="border rounded-lg p-6 hover:border-blue-500 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-blue-600 mb-2">August 2024 Departures</h3>
+                                <div class="space-y-4">
+                                    <div class="bg-blue-50 p-4 rounded-lg transition-all hover:bg-blue-100">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="font-semibold text-blue-800">August 5, 2024</span>
+                                            <span class="text-green-600 font-bold">15 seats left</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div class="border-r">
+                                                <p class="text-sm text-gray-600">Outbound Flight AA1238</p>
+                                                <div class="flex items-center space-x-2">
+                                                    <i class="fas fa-plane-departure text-blue-500"></i>
+                                                    <span>MIA 10:00</span>
+                                                    <i class="fas fa-long-arrow-alt-right text-gray-400"></i>
+                                                    <span>PIS 13:30</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm text-gray-600">Return Flight AA1239</p>
+                                                <div class="flex items-center space-x-2">
+                                                    <i class="fas fa-plane-arrival text-blue-500"></i>
+                                                    <span>PIS 16:00</span>
+                                                    <i class="fas fa-long-arrow-alt-right text-gray-400"></i>
+                                                    <span>MIA 19:30</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 p-3 bg-white rounded-lg">
+                                            <h4 class="font-semibold text-gray-700 mb-2">Tour Package Pricing</h4>
+                                            <div class="grid grid-cols-3 gap-4">
+                                                <div class="text-center">
+                                                    <p class="text-sm text-gray-600">Adult (12+)</p>
+                                                    <p class="text-lg font-medium text-gray-500 line-through">$1,999</p>
+                                                    <p class="text-xl font-bold text-blue-600">$1,599</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="text-sm text-gray-600">Child (2-11)</p>
+                                                    <p class="text-lg font-medium text-gray-500 line-through">$1,499</p>
+                                                    <p class="text-xl font-bold text-blue-600">$1,099</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="text-sm text-gray-600">Infant (0-2)</p>
+                                                    <p class="text-lg font-medium text-gray-500 line-through">$499</p>
+                                                    <p class="text-xl font-bold text-blue-600">$399</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-blue-50 p-4 rounded-lg transition-all hover:bg-blue-100">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="font-semibold text-blue-800">August 19, 2024</span>
+                                            <span class="text-green-600 font-bold">10 seats left</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div class="border-r">
+                                                <p class="text-sm text-gray-600">Outbound Flight AA1240</p>
+                                                <div class="flex items-center space-x-2">
+                                                    <i class="fas fa-plane-departure text-blue-500"></i>
+                                                    <span>MIA 11:00</span>
+                                                    <i class="fas fa-long-arrow-alt-right text-gray-400"></i>
+                                                    <span>PIS 14:30</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm text-gray-600">Return Flight AA1241</p>
+                                                <div class="flex items-center space-x-2">
+                                                    <i class="fas fa-plane-arrival text-blue-500"></i>
+                                                    <span>PIS 17:00</span>
+                                                    <i class="fas fa-long-arrow-alt-right text-gray-400"></i>
+                                                    <span>MIA 20:30</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 p-3 bg-white rounded-lg">
+                                            <h4 class="font-semibold text-gray-700 mb-2">Tour Package Pricing</h4>
+                                            <div class="grid grid-cols-3 gap-4">
+                                                <div class="text-center">
+                                                    <p class="text-sm text-gray-600">Adult (12+)</p>
+                                                    <p class="text-lg font-medium text-gray-500 line-through">$1,999</p>
+                                                    <p class="text-xl font-bold text-blue-600">$1,599</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="text-sm text-gray-600">Child (2-11)</p>
+                                                    <p class="text-lg font-medium text-gray-500 line-through">$1,499</p>
+                                                    <p class="text-xl font-bold text-blue-600">$1,099</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="text-sm text-gray-600">Infant (0-2)</p>
+                                                    <p class="text-lg font-medium text-gray-500 line-through">$499</p>
+                                                    <p class="text-xl font-bold text-blue-600">$399</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-6 gradient-text">Thông tin lưu ý</h2>
+
+                <div class="space-y-6">
+                    <div class="border-b pb-4">
+                        <h3 class="text-xl font-semibold text-blue-600 mb-3">Thanh toán</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-money-bill text-blue-500 mt-1"></i>
+                                <span>Cọc 50% tổng giá trị tour sau khi đăng ký</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-calendar text-blue-500 mt-1"></i>
+                                <span>Số tiền còn lại thanh toán hết trước ngày khởi hành 7-10 ngày (áp dụng tour ngày thường), trước ngày khởi hành 20 - 25 ngày (áp dụng tour Lễ, Tết).</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="border-b pb-4">
+                        <h3 class="text-xl font-semibold text-blue-600 mb-3">Điều kiện hủy vé (không áp dụng cho Lễ và Tết)</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-ban text-blue-500 mt-1"></i>
+                                <span>Quý khách mất cọc nếu hủy sau khi mua</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-calendar-times text-blue-500 mt-1"></i>
+                                <span>Quý khách hủy trước 7 ngày khởi hành chịu phí 70% giá vé</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-info-circle text-blue-500 mt-1"></i>
+                                <span>Giai đoạn Lễ/Tết không hoàn, hủy, đổi.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-3">Quy định chung</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-passport text-blue-500 mt-1"></i>
+                                <span>Quý khách phải có hộ chiếu còn hạn 06 tháng tính từ ngày tour kết thúc và mang theo khi đi tour. Sau khi đăng ký tour quý khách cung cấp hình chụp hộ chiếu, số điện thoại của quý khách cho công ty. </span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-child text-blue-500 mt-1"></i>
+                                <span>Under 18s require notarized parental consent and birth certificate</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-globe text-blue-500 mt-1"></i>
+                                <span>Đối với khách Việt Kiều, khách nước ngoài phải có visa tái nhập Việt Nam nhiều lần hoặc phải thực hiện di theo tour.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-cloud-sun text-blue-500 mt-1"></i>
+                                <span>Thứ tự các điểm tham quan theo chương trình HDV có thể thay đổi tùy theo thời tiết và các vấn đề khách quan khác mà vẫn đảm bảo đủ các điểm tham quan.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-exclamation-triangle text-blue-500 mt-1"></i>
+                                <span>Cam kết đã được tư vấn hiểu rõ và đồng ý các quy định liên quan về điều kiện sức khỏe khi tham gia chương trình du lịch.</span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:col-span-1">
+            <div class="bg-white rounded-xl p-6 shadow-lg sticky top-24">
+                <div class="mb-6">
+                    <p class="text-gray-600 line-through">Giá gốc: 6.990.000 đ</p>
+                    <p class="text-3xl font-bold text-blue-600">6.290.000 đ</p>
+                </div>
+                <button class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3 rounded-lg hover:from-blue-700 hover:to-blue-900 transition-all duration-300 mb-4">
+                    <i class="fas fa-shopping-cart mr-2 float"></i>Đặt tour
+                </button>
+                <button class="w-full border-2 border-blue-600 text-blue-600 py-3 rounded-lg hover:bg-blue-50 transition-all duration-300">
+                    <i class="fas fa-comments mr-2"></i>Tư vấn ngay
+                </button>
+
+                <div class="mt-6 space-y-4">
+                    <h3 class="text-xl font-bold text-green-600 mb-4 border-b pb-2">Dịch vụ bao gồm:</h3>
+                    <ul class="text-gray-600 space-y-3">
+                        <li class="flex items-center space-x-2 bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-all">
+                            <i class="fas fa-plane-departure text-green-500"></i>
+                            <span>Vé máy bay khứ hồi SÀI GÒN – BANGKOK – SÀI GÒN, hành lý 07kg xách tay + 20kg hành lý ký gửi. </span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-all">
+                            <i class="fas fa-bus text-green-500"></i>
+                            <span>Xe máy lạnh phục vụ riêng cho đoàn suốt tuyến.</span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-all">
+                            <i class="fas fa-receipt text-green-500"></i>
+                            <span>Các loại thuế phí sân bay, xăng dầu, an ninh,... </span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-all">
+                            <i class="fas fa-hotel text-green-500"></i>
+                            <span>Khách sạn tiêu chuẩn 4 - 5 sao tiêu chuẩn THÁI LAN, 2 hoặc 3 khách người lớn 1 phòng, trường hợp ch đi lẻ sẽ ở ghép với khách khác hoặc sẽ phụ thu phòng đơn.</span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-all">
+                            <i class="fas fa-utensils text-green-500"></i>
+                            <span>Ăn uống theo chương trình, 4 bữa sáng Buffet khách sạn, 07 bữa ăn chính.</span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-all">
+                            <i class="fas fa-ticket-alt text-green-500"></i>
+                            <span>Vé tham quan một lần các điểm có trong chương trình.</span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-all">
+                            <i class="fas fa-gift text-green-500"></i>
+                            <span>Quà tặng : Nón du lịch.</span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-all">
+                            <i class="fas fa-tint text-green-500"></i>
+                            <span> Nước phục vụ hàng ngày, tiêu chuẩn 01 chai trên xe và 01 chai tại khách sạn.</span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-all">
+                            <i class="fas fa-shield-alt text-green-500"></i>
+                            <span>Bảo hiểm du lịch quốc tế.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-6 space-y-4">
+                    <h3 class="text-xl font-bold text-red-600 mb-4 border-b pb-2">Dịch vụ không bao gồm: </h3>
+                    <ul class="text-gray-600 space-y-3">
+                        <li class="flex items-center space-x-2 bg-red-50 p-3 rounded-lg hover:bg-red-100 transition-all">
+                            <i class="fas fa-passport text-red-500"></i>
+                            <span>Hộ chiếu hợp lệ còn thời hạn là 06 tháng so với ngày về của tour.</span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-red-50 p-3 rounded-lg hover:bg-red-100 transition-all">
+                            <i class="fas fa-map-marked text-red-500"></i>
+                            <span>Chi phí tham quan ngoài chương trình và các chi phí cá nhân khác.</span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-red-50 p-3 rounded-lg hover:bg-red-100 transition-all">
+                            <i class="fas fa-hand-holding-usd text-red-500"></i>
+                            <span>Phí TIP cho HDV và lái xe tại Thái Lan là 5 USD/ngày/người. </span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-red-50 p-3 rounded-lg hover:bg-red-100 transition-all">
+                            <i class="fas fa-file-alt text-red-500"></i>
+                            <span>Visa nhập cảnh Việt Nam (35 USD/khách) đối với khách Việt Kiều hoặc khách nước ngoài. </span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-red-50 p-3 rounded-lg hover:bg-red-100 transition-all">
+                            <i class="fas fa-door-closed text-red-500"></i>
+                            <span>Phụ thu phòng đơn : 90 USD/khách.</span>
+                        </li>
+                        <li class="flex items-center space-x-2 bg-red-50 p-3 rounded-lg hover:bg-red-100 transition-all">
+                            <i class="fas fa-percentage text-red-500"></i>
+                            <span>Phí VAT.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Customer Reviews Section -->
+    <div class="bg-white rounded-xl p-8 shadow-lg mb-8 mt-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Đánh giá khách du lịch</h2>
+
+        <!-- Review Summary -->
+        <div class="flex flex-col md:flex-row items-center justify-between mb-12 p-6 bg-blue-50 rounded-xl">
+            <div class="text-center md:text-left mb-6 md:mb-0">
+                <div class="text-5xl font-bold text-blue-600">4.8</div>
+                <div class="flex justify-center md:justify-start text-yellow-400 my-2">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="text-gray-600">Based on 128 reviews</div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <span class="text-sm w-20">5 stars</span>
+                        <div class="flex-1 h-4 mx-2 bg-gray-200 rounded">
+                            <div class="w-4/5 h-full bg-yellow-400 rounded animate-width"></div>
+                        </div>
+                        <span class="text-sm w-20 text-right">80%</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-sm w-20">4 stars</span>
+                        <div class="flex-1 h-4 mx-2 bg-gray-200 rounded">
+                            <div class="w-3/5 h-full bg-yellow-400 rounded animate-width"></div>
+                        </div>
+                        <span class="text-sm w-20 text-right">60%</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-sm w-20">3 stars</span>
+                        <div class="flex-1 h-4 mx-2 bg-gray-200 rounded">
+                            <div class="w-2/5 h-full bg-yellow-400 rounded animate-width"></div>
+                        </div>
+                        <span class="text-sm w-20 text-right">40%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Individual Reviews -->
+        <div class="space-y-6">
+            <div class="border-b pb-6 review-card hover:shadow-lg transition-all duration-300 p-4 rounded-lg">
+                <div class="flex items-center mb-4">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Reviewer" class="w-12 h-12 rounded-full object-cover">
+                    <div class="ml-4">
+                        <h4 class="font-bold">Sarah Johnson</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <span class="ml-auto text-gray-500">2 days ago</span>
+                </div>
+                <p class="text-gray-600">"Absolutely amazing experience! The private beach access and sunset cruise were highlights of our trip. The staff was incredibly accommodating and professional."</p>
+            </div>
+
+            <div class="border-b pb-6 review-card hover:shadow-lg transition-all duration-300 p-4 rounded-lg">
+                <div class="flex items-center mb-4">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e" alt="Reviewer" class="w-12 h-12 rounded-full object-cover">
+                    <div class="ml-4">
+                        <h4 class="font-bold">Michael Chen</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                    <span class="ml-auto text-gray-500">1 week ago</span>
+                </div>
+                <p class="text-gray-600">"The snorkeling adventure was incredible! Saw so many tropical fish and even a sea turtle. The resort accommodation was luxurious and comfortable."</p>
+            </div>
+        </div>
+
+        <!-- Add Review Form -->
+        <div class="mt-12 bg-gray-50 p-6 rounded-xl">
+            <h3 class="text-2xl font-bold mb-6">Share Your Experience</h3>
+            <form class="space-y-6">
+                <div>
+                    <label class="block text-gray-700 mb-2">Your Rating</label>
+                    <div class="flex text-3xl text-gray-300 rating-stars">
+                        <i class="fas fa-star cursor-pointer hover:text-yellow-400 transition-colors"></i>
+                        <i class="fas fa-star cursor-pointer hover:text-yellow-400 transition-colors"></i>
+                        <i class="fas fa-star cursor-pointer hover:text-yellow-400 transition-colors"></i>
+                        <i class="fas fa-star cursor-pointer hover:text-yellow-400 transition-colors"></i>
+                        <i class="fas fa-star cursor-pointer hover:text-yellow-400 transition-colors"></i>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Your Review</label>
+                    <textarea class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 transition-all" rows="4" placeholder="Share your experience..."></textarea>
+                </div>
+                <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all transform hover:-translate-y-1">
+                    Submit Review
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+
+<script>
+    function toggleDetails(dayId) {
+        const element = document.getElementById(dayId);
+        if (element.classList.contains('hidden')) {
+            element.classList.remove('hidden');
+            element.classList.add('block');
+        } else {
+            element.classList.remove('block');
+            element.classList.add('hidden');
+        }
+    }
+
+
+    let currentSlide = 0;
+    const carousel = document.getElementById('carousel');
+    const images = document.querySelectorAll('.carousel-image');
+    const totalSlides = images.length;
+
+    function moveSlide(direction) {
+        if (direction === 'next') {
+            currentSlide = (currentSlide + 1) % totalSlides;
+        } else {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        }
+        updateCarousel();
+    }
+
+    function updateCarousel() {
+        const offset = currentSlide * -100;
+        carousel.style.transition = 'transform 1s ease';  // Thêm hiệu ứng chuyển động
+        carousel.style.transform = `translateX(${offset}%)`;
+    }
+
+    // Đảm bảo rằng carousel có đúng kích thước
+    carousel.style.width = `${totalSlides * 100}%`;
+    images.forEach(img => {
+        img.style.width = `${100 / totalSlides}%`;
+    });
+
+    let text = new SplitTy
+
+
+</script>
+</html>
