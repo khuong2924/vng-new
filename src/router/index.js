@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import TourType from '../views/TourType.vue';
 import TourDetail from '../views/TourDetail.vue';
+import VisaService from '../views/VisaService.vue';
+
 
 const routes = [
   {
@@ -20,6 +22,11 @@ const routes = [
     name: 'TourDetail',
     component: TourDetail,
   },
+  {
+    path: '/visa-service',
+    name: 'VisaService',
+    component: VisaService,
+  }
 ];
 
 const router = createRouter({

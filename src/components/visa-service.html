@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visa Services - Travel Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@3.0.6/css/line.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/lottie-web@5.7.14/build/player/lottie.min.js"></script>
+    <style>
+        [x-cloak] { display: none !important; }
+        .custom-shape-divider-bottom-1627023629 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .custom-shape-divider-bottom-1627023629 svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+        .custom-shape-divider-bottom-1627023629 .shape-fill {
+            fill: #FFFFFF;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-r from-blue-500 to-purple-600">
+        <div class="absolute inset-0 z-0">
+            <img src="https://source.unsplash.com/1600x900/?travel,passport" alt="Travel Visa" class="w-full h-full object-cover opacity-30">
+        </div>
+        <div class="relative z-10 text-center text-white" data-aos="fade-up">
+            <h1 class="text-6xl font-bold mb-4 animate__animated animate__fadeInDown">Visa Services</h1>
+            <p class="text-2xl animate__animated animate__fadeInUp animate__delay-1s">Your gateway to global adventures</p>
+            <button class="mt-8 px-8 py-3 bg-white text-blue-600 rounded-full font-semibold text-lg transform transition duration-500 hover:scale-110 hover:bg-blue-100 animate__animated animate__bounceIn animate__delay-2s">
+                Explore Now
+            </button>
+        </div>
+        <div class="custom-shape-divider-bottom-1627023629">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Countries Supported Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 flex flex-wrap items-center">
+            <div class="w-full lg:w-1/2 mb-8 lg:mb-0" data-aos="fade-right">
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-8 shadow-lg transform transition duration-500 hover:scale-105">
+                    <h2 class="text-3xl font-bold mb-4">Countries Supported</h2>
+                    <div class="text-6xl font-bold" x-data="{ count: 0 }" x-init="$nextTick(() => { setInterval(() => { if (count < 195) count++; }, 20); })">
+                        <span x-text="count">0</span>
+                    </div>
+                    <p class="mt-2">and growing every day!</p>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/2" data-aos="fade-left">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="https://source.unsplash.com/400x300/?usa" alt="USA" class="w-full h-64 object-cover rounded-lg shadow-md"></div>
+                        <div class="swiper-slide"><img src="https://source.unsplash.com/400x300/?japan" alt="Japan" class="w-full h-64 object-cover rounded-lg shadow-md"></div>
+                        <div class="swiper-slide"><img src="https://source.unsplash.com/400x300/?france" alt="France" class="w-full h-64 object-cover rounded-lg shadow-md"></div>
+                        <div class="swiper-slide"><img src="https://source.unsplash.com/400x300/?australia" alt="Australia" class="w-full h-64 object-cover rounded-lg shadow-md"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visa Price List Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4" data-aos="fade-up">
+            <h2 class="text-4xl font-bold mb-8 text-center text-gray-800">Visa Price List</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full bg-white shadow-xl rounded-lg overflow-hidden">
+                    <thead class="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                        <tr>
+                            <th class="py-3 px-4 text-left">Country</th>
+                            <th class="py-3 px-4 text-left">Visa Type</th>
+                            <th class="py-3 px-4 text-left">Review Time</th>
+                            <th class="py-3 px-4 text-left">Reference Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-300">
+                            <td class="py-3 px-4">
+                                <div class="flex items-center">
+                                    <img src="https://flagcdn.com/w40/us.png" alt="USA" class="w-6 h-4 mr-2">
+                                    USA
+                                </div>
+                            </td>
+                            <td class="py-3 px-4">Tourist</td>
+                            <td class="py-3 px-4">3-5 business days</td>
+                            <td class="py-3 px-4">$160</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-300">
+                            <td class="py-3 px-4">
+                                <div class="flex items-center">
+                                    <img src="https://flagcdn.com/w40/jp.png" alt="Japan" class="w-6 h-4 mr-2">
+                                    Japan
+                                </div>
+                            </td>
+                            <td class="py-3 px-4">Business</td>
+                            <td class="py-3 px-4">5-7 business days</td>
+                            <td class="py-3 px-4">$80</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-300">
+                            <td class="py-3 px-4">
+                                <div class="flex items-center">
+                                    <img src="https://flagcdn.com/w40/fr.png" alt="France" class="w-6 h-4 mr-2">
+                                    France
+                                </div>
+                            </td>
+                            <td class="py-3 px-4">Schengen</td>
+                            <td class="py-3 px-4">10-15 business days</td>
+                            <td class="py-3 px-4">€80</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition duration-300">
+                            <td class="py-3 px-4">
+                                <div class="flex items-center">
+                                    <img src="https://flagcdn.com/w40/au.png" alt="Australia" class="w-6 h-4 mr-2">
+                                    Australia
+                                </div>
+                            </td>
+                            <td class="py-3 px-4">eVisitor</td>
+                            <td class="py-3 px-4">1-2 business days</td>
+                            <td class="py-3 px-4">Free</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4" data-aos="fade-up">
+            <h2 class="text-4xl font-bold mb-8 text-center text-gray-800">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto">
+                <div x-data="{ open: false }" class="mb-4">
+                    <button @click="open = !open" class="flex justify-between items-center w-full p-4 bg-gray-200 rounded-lg focus:outline-none transition duration-300 hover:bg-gray-300">
+                        <span class="text-lg font-semibold">What documents do I need for a visa application?</span>
+                        <svg :class="{'rotate-180': open}" class="w-5 h-5 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div x-show="open" x-cloak class="mt-2 p-4 bg-gray-100 rounded-lg">
+                        The required documents vary depending on the country and visa type. Generally, you'll need a valid passport, passport-sized photos, proof of funds, travel itinerary, and accommodation details.
+                    </div>
+                </div>
+                <!-- Add more FAQ items here -->
+            </div>
+            <div class="mt-8 flex justify-center space-x-4">
+                <button id="check-pass-rate" @click="$dispatch('open-modal')" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition duration-300 transform hover:scale-105">
+                    Check Pass Rate
+                </button>
+                <button id="register-consultation" class="bg-gradient-to-r from-green-500 to-teal-500 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-teal-600 transition duration-300 transform hover:scale-105">
+                    Register for Consultation
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4" data-aos="fade-up">
+            <h2 class="text-4xl font-bold mb-8 text-center text-gray-800">Our Visa Process Workflow</h2>
+            <div class="flex flex-wrap justify-center">
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4">
+                    <div class="bg-white rounded-lg p-6 shadow-lg text-center transform transition duration-500 hover:scale-105" data-aos="zoom-in" data-aos-delay="100">
+                        <div id="lottie-receive" class="w-24 h-24 mx-auto mb-4"></div>
+                        <h3 class="text-xl font-semibold mb-2">1. Receive Information</h3>
+                        <p>Gather all necessary details and provide expert advice</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4">
+                    <div class="bg-white rounded-lg p-6 shadow-lg text-center transform transition duration-500 hover:scale-105" data-aos="zoom-in" data-aos-delay="200">
+                        <div id="lottie-profile" class="w-24 h-24 mx-auto mb-4"></div>
+                        <h3 class="text-xl font-semibold mb-2">2. Complete Profile</h3>
+                        <p>Add and complete customer profile with all required information</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4">
+                    <div class="bg-white rounded-lg p-6 shadow-lg text-center transform transition duration-500 hover:scale-105" data-aos="zoom-in" data-aos-delay="300">
+                        <div id="lottie-review" class="w-24 h-24 mx-auto mb-4"></div>
+                        <h3 class="text-xl font-semibold mb-2">3. Review Process</h3>
+                        <p>Complete visa application and send to the review department</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4">
+                    <div class="bg-white rounded-lg p-6 shadow-lg text-center transform transition duration-500 hover:scale-105" data-aos="zoom-in" data-aos-delay="400">
+                        <div id="lottie-results" class="w-24 h-24 mx-auto mb-4"></div>
+                        <h3 class="text-xl font-semibold mb-2">4. Send Results</h3>
+                        <p>Send results to customers and complete the process</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Check Pass Rate Modal -->
+    <div x-data="{ open: false }" x-show="open" x-on:open-modal.window="open = true" x-cloak class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Check Visa Pass Rate
+                            </h3>
+                            <div class="mt-2">
+                                <form class="space-y-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Select Country</label>
+                                        <div class="mt-2 space-y-2">
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="country" value="usa">
+                                                <span class="ml-2">USA</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="country" value="uk">
+                                                <span class="ml-2">UK</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="country" value="canada">
+                                                <span class="ml-2">Canada</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Marital Status</label>
+                                        <div class="mt-2 space-y-2">
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="marital_status" value="single">
+                                                <span class="ml-2">Single</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="marital_status" value="married">
+                                                <span class="ml-2">Married</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Place of birth in province</label>
+                                        <div class="mt-2">
+                                            <label class="inline-flex items-center">
+                                                <input type="checkbox" class="form-checkbox" name="birth_in_province">
+                                                <span class="ml-2">Yes</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">International Travel History</label>
+                                        <div class="mt-2 space-y-2">
+                                            <label class="inline-flex items-center">
+                                                <input type="checkbox" class="form-checkbox" name="travel_history" value="europe">
+                                                <span class="ml-2">Europe</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="checkbox" class="form-checkbox" name="travel_history" value="asia">
+                                                <span class="ml-2">Asia</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="checkbox" class="form-checkbox" name="travel_history" value="americas">
+                                                <span class="ml-2">Americas</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Number of times Visa has been rejected</label>
+                                        <div class="mt-2 space-y-2">
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="visa_rejections" value="0">
+                                                <span class="ml-2">0</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="visa_rejections" value="1-2">
+                                                <span class="ml-2">1-2</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="visa_rejections" value="3+">
+                                                <span class="ml-2">3+</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Current Job</label>
+                                        <div class="mt-2 space-y-2">
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="current_job" value="employed">
+                                                <span class="ml-2">Employed</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="current_job" value="self-employed">
+                                                <span class="ml-2">Self-employed</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="current_job" value="student">
+                                                <span class="ml-2">Student</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Average Income</label>
+                                        <div class="mt-2 space-y-2">
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="average_income" value="low">
+                                                <span class="ml-2">Low</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="average_income" value="medium">
+                                                <span class="ml-2">Medium</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="average_income" value="high">
+                                                <span class="ml-2">High</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Financial Ability</label>
+                                        <div class="mt-2 space-y-2">
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="financial_ability" value="low">
+                                                <span class="ml-2">Low</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="financial_ability" value="medium">
+                                                <span class="ml-2">Medium</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio" name="financial_ability" value="high">
+                                                <span class="ml-2">High</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                        <input type="text" name="name" id="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                    <div>
+                                        <label for="phone" class="block text-sm font-medium text-gray-700">Phone number</label>
+                                        <input type="tel" name="phone" id="phone" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                        <input type="email" name="email" id="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        Get Results
+                    </button>
+                    <button type="button" @click="open = false" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new Swiper('.swiper-container', {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 20,
+                autoplay: {
+                    delay: 3000,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                effect: 'coverflow',
+                coverflowEffect: {
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                },
+            });
+
+            // Lottie animations
+            const animationUrls = {
+                receive: 'https://assets2.lottiefiles.com/packages/lf20_u25cckyh.json',
+                profile: 'https://assets2.lottiefiles.com/packages/lf20_khzniaya.json',
+                review: 'https://assets10.lottiefiles.com/packages/lf20_vvmwwna6.json',
+                results: 'https://assets2.lottiefiles.com/packages/lf20_9wpyhdzo.json'
+            };
+
+            Object.entries(animationUrls).forEach(([key, url]) => {
+                lottie.loadAnimation({
+                    container: document.getElementById(`lottie-${key}`),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: url
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
