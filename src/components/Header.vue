@@ -1,25 +1,34 @@
 <template>
   <router-link to="/tour-detail"></router-link>
-  <header class="bg-white/90 backdrop-blur-md shadow-lg fixed w-full z-50 transition-all duration-500 hover:shadow-2xl h-20 flex items-center justify-between px-4">
-    <!-- Logo -->
-    <div class="logo d-flex align-items-center me-auto flex-shrink-0 flex items-center transform hover:scale-110 transition-transform px-8 duration-500">
+  <header class="bg-white/80 backdrop-blur-md shadow-lg fixed w-full z-50 transition-all duration-500 h-20 flex items-center justify-between px-4 animate-gradient-x">
+    <!-- Enhanced Logo section -->
+    <div class="logo-container flex-shrink-0 flex items-center px-8">
       <img 
         src="/src/assets/logo-ngang-khong-nen.png" 
         alt="Wanderlust Logo" 
-        class="logo d-flex align-items-center me-auto w-auto max-h-40 hover:scale-105 transition-transform duration-500 object-contain
-        motion-safe:animate-fade-in
-        motion-safe:animate-scale-in
-        motion-safe:animate-slide-in-from-left"
+        class="w-auto max-h-40 hover:scale-110 transition-all duration-500 object-contain
+        animate-float"
       >
     </div>
 
-    <!-- Navigation -->
-    <div class="flex px-8 items-center space-x-6">
-      <a href="/" class="text-blue-600 hover:text-b lue-800 px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-blue-100 hover:scale-105 transform">Trang chủ</a>
-      <a href="/tour-type" class="text-blue-600 hover:text-blue-600 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-blue-100 hover:scale-105 transform">Du lịch</a>
+    <!-- Enhanced Navigation -->
+    <div class="flex px-8 items-center space-x-8">
+      <a href="/" class="nav-link group">
+        <span class="relative">
+          Trang chủ
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+        </span>
+      </a>
+      <a href="/tour-type" class="nav-link group">
+        <span class="relative">
+          Du lịch
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+        </span>
+      </a>
 
-      <!-- Đi ngay button -->
-      <router-link to="/tour-detail" 
+      <!-- Enhanced Đi ngay button -->
+       <!-- Đi ngay button -->
+       <router-link to="/tour-detail" 
          class="motion-preset-flomoji-🚀 inline-flex items-center px-4 py-2 border-2 border-blue-500 text-lg font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-all duration-1000 transform hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/50">
         Đi ngay
         <svg class="ml-2 -mr-1 w-6 h-6 animate-bounce-slow" fill="currentColor" viewBox="0 0 20 20">
@@ -38,30 +47,47 @@ export default {
 </script>
 
 <style scoped>
-/* Navigation Links */
+/* Enhanced Navigation Links */
 .nav-link {
-  @apply text-blue-600 hover:text-blue-800 px-4 py-2 rounded-lg font-medium transition-all duration-1000 hover:bg-blue-100 hover:scale-105 transform;
+  @apply text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 transform;
 }
 
-/* Primary Button */
-.btn-primary {
-  @apply inline-flex items-center px-4 py-2 border-2 border-blue-500 text-lg font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-all duration-1000 transform hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/50;
+/* Enhanced Glow Button */
+.glow-button {
+  @apply inline-flex items-center px-6 py-3 text-lg font-medium rounded-full text-white 
+  bg-gradient-to-r from-blue-600 to-teal-400 hover:from-blue-700 hover:to-teal-500
+  transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/50
+  border border-white/20 backdrop-blur-sm;
+  animation: glow 2s infinite;
 }
 
-/* Add motion preset styles */
-.motion-preset-flomoji-🚀 {
-  animation: bounce 1s infinite;
+/* Gradient Animation */
+.animate-gradient-x {
+  background: linear-gradient(270deg, #3b82f6, #0ea5e9, #06b6d4);
+  background-size: 200% 200%;
+  animation: gradientAnimation 15s ease infinite;
 }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-  }
-  50% {
-    transform: translateY(0);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
+/* Float Animation for Logo */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
+  50% { box-shadow: 0 0 25px rgba(59, 130, 246, 0.8); }
 }
 </style>
 

@@ -17,7 +17,7 @@ import HeroSlider from '../components/tour-type/HeroSlider.vue'
 import TourFilter from '../components/tour-type/TourFilter.vue'
 import BannerExplore from '../components/tour-type/BannerExplore.vue'
 import TourList from '../components/tour-type/TourList.vue'
-import TravelGuides from '../components/tour-type/TravelGuides.vue'
+import TravelGuides from '../components/TravelGuides.vue'
 
 export default {
   name: 'TourType',

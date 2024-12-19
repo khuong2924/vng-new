@@ -12,7 +12,8 @@
                  :key="index"
                  :src="image.src" 
                  :alt="image.alt"
-                 :class="['w-full h-full object-contain absolute schedule-image transition-all duration-700 transform hover:scale-110', 
+                 ref="scheduleImages"
+                 :class="['w-full h-full object-contain absolute schedule-image', 
                           { 'opacity-100': currentIndex === index, 'opacity-0': currentIndex !== index }]">
           </div>
           <button @click="prevImage" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 p-4 rounded-full hover:bg-opacity-100 transition-all duration-300 shadow-lg hover:scale-110">
@@ -29,8 +30,9 @@
     </div>
   </div>
 </template>
-
 <script>
+import gsap from "gsap";
+
 export default {
   name: 'ScheduleModal',
   data() {
@@ -48,10 +50,23 @@ export default {
       this.$emit('close')
     },
     prevImage() {
-      this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length
+      this.applyGsapEffect('prev');
+      this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
     },
     nextImage() {
-      this.currentIndex = (this.currentIndex + 1) % this.images.length
+      this.applyGsapEffect('next');
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    },
+    applyGsapEffect(direction) {
+      const images = this.$refs.scheduleImages;
+      const currentImage = images[this.currentIndex];
+      
+      // Xác định hiệu ứng dựa trên hướng
+      const fromEffect = direction === 'next' ? { x: 100, rotation: -360 } : { x: -100, rotation: 360 };
+      const toEffect = { x: 0, rotation: 0, duration: 1, ease: "power2.out" };
+
+      // Áp dụng GSAP
+      gsap.fromTo(currentImage, fromEffect, toEffect);
     }
   }
 }
