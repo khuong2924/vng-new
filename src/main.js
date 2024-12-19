@@ -1,13 +1,13 @@
 // main.js
 import { createApp } from 'vue';
-import App from './views/App.vue';
+import App from '../src/views/App.vue';
 import router from './router'; // Import router
 
 // Import các component
 import Header from './components/Header.vue';
-import ScheduleModal from './components/ScheduleModal.vue';
+import ScheduleModal from './components/home/ScheduleModal.vue';
 import TourSection from './components/TourSection.vue';
-import ContactSection from './components/ContactSection.vue';
+import ContactSection from './components/home/ContactSection.vue';
 
 // Tạo app
 const app = createApp(App);

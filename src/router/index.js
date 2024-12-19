@@ -1,19 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import App from '../views/App.vue'; 
-import TourType from '../views/TourType.vue'; 
+import Home from '../views/Home.vue';
+import TourType from '../views/TourType.vue';
+import TourDetail from '../views/TourDetail.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: App,
+    component: Home,
   },
   {
     path: '/tour-type',
     name: 'TourType',
     component: TourType,
   },
-  
+  {
+    // path: '/tour/:id',
+    path: '/tour-detail',
+    name: 'TourDetail',
+    component: TourDetail,
+  },
 ];
 
 const router = createRouter({
