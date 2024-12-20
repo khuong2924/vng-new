@@ -11,17 +11,17 @@
     <!-- Countries Supported Section -->
     <section class="py-4">
       <div class="container mx-auto px-16 flex flex-wrap items-center">
-        <div id="countries-supported" class="w-full lg:w-2/5 mb-8 lg:mb-0">
-          <div class="relative bg-cover bg-center rounded-lg p-16 shadow-lg transform transition duration-500 hover:scale-105 overflow-hidden h-[295px]" 
-               :style="{ backgroundImage: `url(${getImageUrl()})` }">
+        <div id="countries-supported" class="w-full lg:w-2/5 mb-0 lg:mb-4">
+          <div class="relative bg-cover bg-center rounded-lg p-24 shadow-lg transform transition duration-500 hover:scale-105 overflow-hidden h-[210px]" 
+               :style="{ backgroundImage: `url(${getImageUrl()})`, backgroundSize: '115%', backgroundRepeat: 'no-repeat' }">
             <!-- Content -->
-            <div class="relative z-10 text-white mr-32">
-              
-              <div id="countries-supported-count" class="text-7xl ml-16 font-extrabold mb-4">
+            <div class="relative z-2 text-white mr-32 mt-0">
+
+              <div id="countries-supported-count" class="text-7xl ml-4 font-extrabold mb-4">
                 <span class="bg-gradient-to-r from-blue-500 via-cyan-300 to-gray-300 inline-block text-transparent bg-clip-text drop-shadow-lg">{{ count }}+</span>
               </div>
-              <p id="countries-supported-text" class="ml-16 text-2lg font-medium tracking-wide w-64">
-                <span class="motion-preset-typewriter-[24] bg-gradient-to-r from-blue-500 via-cyan-300 to-gray-300 inline-block text-transparent bg-clip-text drop-shadow-lg">quốc gia được hỗ trợ!</span>
+              <p id="countries-supported-text" class="ml-4 text-2lg font-medium tracking-wide w-64">
+                <span class="motion-preset-typewriter-[24] bg-gradient-to-r from-blue-500 via-cyan-300 to-gray-300 inline-block text-transparent bg-clip-text drop-shadow-lg">quốc gia được hỗ trợ</span>
               </p>
             </div>
           </div>

@@ -1,5 +1,5 @@
 <template>
-    <section id="travel-guides" class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+    <section id="travel-guides" class="">
         <div class="container mx-auto px-4 py-8">
             <!-- Title Section -->
             <div class="flex justify-between items-center mb-8 animate-fade-in-down">
