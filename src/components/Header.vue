@@ -1,13 +1,11 @@
 <template>
   <router-link to="/tour-detail"></router-link>
-  <header class="bg-white/80 backdrop-blur-md shadow-lg fixed w-full z-50 transition-all duration-500 h-20 flex items-center justify-between px-4 animate-gradient-x">
+  <header class="bg-custom-gradient backdrop-blur-md shadow-lg fixed w-full z-50 transition-all duration-500 h-20 flex items-center justify-between px-4">
     <!-- Enhanced Logo section -->
     <div class="logo-container flex-shrink-0 flex items-center px-8">
-      <img 
-        src="/src/assets/logo-ngang-khong-nen.png" 
-        alt="Wanderlust Logo" 
-        class="w-auto max-h-40 hover:scale-110 transition-all duration-500 object-contain
-        animate-float"
+      <img :src="logo"
+        alt="VNG Logo" 
+        class="w-40 h-30 hover:scale-110 transition-all duration-500 object-contain"
       >
     </div>
 
@@ -72,12 +70,15 @@
 </template>
 
 <script>
+import logo from '@/assets/Logo-ngang-01.png';
+
 export default {
   name: 'HeaderComponent',
   emits: ['open-schedule'],
   data() {
     return {
-      isMenuOpen: false
+      isMenuOpen: false,
+      logo: logo,
     }
   }
 }
@@ -98,9 +99,8 @@ export default {
   animation: glow 2s infinite;
 }
 
-/* Gradient Animation */
-.animate-gradient-x {
-  background: linear-gradient(270deg, #3b82f6, #0ea5e9, #06b6d4);
+/* Update header to use Tailwind class with animation */
+.bg-custom-gradient {
   background-size: 200% 200%;
   animation: gradientAnimation 15s ease infinite;
 }

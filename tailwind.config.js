@@ -23,7 +23,15 @@ module.exports = {
     'motion-ease-spring-bouncier',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'custom-blue': '#1E3A8A', // Định nghĩa màu cơ bản
+        'custom-teal': '#14B8A6', // Định nghĩa màu phụ
+      },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(315deg, #00aaaa 0%, #00dca0 100%)', // Gradient tùy chỉnh
+      },
+    },
   },
   plugins: [
     require('tailwindcss-motion')
