@@ -135,7 +135,7 @@
                   <button 
                     id="register"
                     @click="openModal"
-                    class="bg-white text-blue-600 font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 ease-in-out hover:bg-blue-50 flex items-center justify-center space-x-2"
+                    class="bg-white text-[#10b981] font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 ease-in-out hover:bg-blue-50 flex items-center justify-center space-x-2"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -148,7 +148,7 @@
                 <button 
                     id="check-pass-rate"
                     @click="openModal"
-                    class="bg-white text-blue-600 font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 ease-in-out hover:bg-blue-50 flex items-center justify-center space-x-2"
+                    class="bg-white text-[#10b981] font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 ease-in-out hover:bg-blue-50 flex items-center justify-center space-x-2"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -193,7 +193,7 @@
       <div
         class="bg-white rounded-lg shadow-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto animate__animated animate__zoomIn"
       >
-        <h2 class="text-3xl font-bold mb-6 text-center text-blue-600 flex items-center justify-center">
+        <h2 class="text-3xl font-bold mb-6 text-center text-[#10b981] flex items-center justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -493,7 +493,7 @@ export default {
       {
         id: 'profile',
         title: '2. Bổ sung và hoàn thiện hồ sơ',
-        description: 'Add and complete customer profile'
+        description: 'Add and complete customer profile review by department'
       },
       {
         id: 'review',

@@ -10,7 +10,7 @@
     </div>
 
     <!-- Enhanced Navigation -->
-    <div class="flex px-8 items-center space-x-8">
+    <div class="flex px-8 items-center space-x-4">
       <!-- Hide nav links on mobile -->
       <div class="hidden md:flex items-center space-x-8">
         <a href="/" class="nav-link group">
@@ -34,7 +34,7 @@
       </div>
 
       <router-link to="/tour-detail" 
-        class="motion-preset-flomoji-🚀 inline-flex items-center px-4 py-2 border-2 border-blue-500 text-lg font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-all duration-1000 transform hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/50">
+        class="motion-preset-flomoji-🚀 inline-flex items-center px-4 py-2 border-2 text-lg font-medium rounded-full text-[#0d9488] bg-[#ccfbf1]  transition-all duration-1000 transform hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/50">
         Đi ngay
         <svg class="ml-2 -mr-1 w-6 h-6 animate-bounce-slow" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>

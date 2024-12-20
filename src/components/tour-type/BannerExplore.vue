@@ -25,10 +25,10 @@
         
             <div class="absolute bottom-4 left-0 right-0 flex flex-col justify-center items-center text-center text-white z-10">
               <h3 class="text-xl font-bold mb-3 text-shadow-lg animate__animated animate__fadeInUp gradient-text">
-                Explore Moments
+              
               </h3>
               <button @click="exploreMoments" 
-                      class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center mx-auto relative overflow-hidden group">
+                      class="bg-custom-gradient text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center mx-auto relative overflow-hidden group">
                 <span class="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 <i class="fas fa-camera-retro mr-2 relative z-10"></i>
                 <span class="relative z-10">Explore {{ displayedMoments }}+ Moments</span>

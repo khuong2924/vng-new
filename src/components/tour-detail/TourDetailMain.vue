@@ -34,31 +34,31 @@
         </div>
 
         <!-- Tour Title -->
-        <h1 class="text-4xl font-bold mb-6 text-center font-poppins bg-gradient-to-r from-purple-400 via-blue-500 to-blue-500 text-transparent bg-clip-text motion-scale-in-[0.49] motion-translate-x-in-[-120%] motion-translate-y-in-[-60%] motion-opacity-in-[33%] motion-rotate-in-[-1080deg] motion-blur-in-[10px] motion-duration-[0.75s]/scale motion-delay-[0.21s]/scale motion-duration-[0.69s]/translate motion-duration-[0.68s]/opacity motion-duration-[0.72s]/rotate motion-duration-[0.15s]/blur motion-delay-[0.60s]/blur motion-ease-spring-bouncier">
+        <h1 class="text-4xl font-bold mb-6 text-center font-poppins bg-gradient-to-r text-[#10b981] text-transparent bg-clip-text motion-scale-in-[0.49] motion-translate-x-in-[-120%] motion-translate-y-in-[-60%] motion-opacity-in-[33%] motion-rotate-in-[-1080deg] motion-blur-in-[10px] motion-duration-[0.75s]/scale motion-delay-[0.21s]/scale motion-duration-[0.69s]/translate motion-duration-[0.68s]/opacity motion-duration-[0.72s]/rotate motion-duration-[0.15s]/blur motion-delay-[0.60s]/blur motion-ease-spring-bouncier">
           {{ tour.title }}
         </h1>
 
         <!-- Tour Info -->
         <div id="tour-less-info" class="bg-white rounded-xl p-6 shadow-lg mb-8 hover:shadow-xl transition-shadow duration-300">
           <div class="grid grid-cols-2 gap-4">
-            <div class="text-center p-4 border rounded-lg hover:border-blue-500 transition-colors duration-300">
-              <i class="fas fa-clock text-2xl text-blue-500 mb-2"></i>
+            <div class="text-center p-4 border rounded-lg hover:border-[#10b981] transition-colors duration-300">
+              <i class="fas fa-clock text-2xl text-[#10b981] mb-2"></i>
               <p class="text-gray-600">Thời gian</p>
               <p class="font-bold">{{ tour.duration }}</p>
             </div>
-            <div class="text-center p-4 border rounded-lg hover:border-blue-500 transition-colors duration-300">
-              <i class="fas fa-plane-departure text-2xl text-blue-500 mb-2"></i>
+            <div class="text-center p-4 border rounded-lg hover:border-[#10b981] transition-colors duration-300">
+              <i class="fas fa-plane-departure text-2xl text-[#10b981] mb-2"></i>
               <p class="text-gray-600">Khởi hành</p>
               <p class="font-bold">{{ tour.startTime }}</p>
               <p class="text-sm">{{ formatDate(tour.startDate) }}</p>
             </div>
-            <div class="text-center p-4 border rounded-lg hover:border-blue-500 transition-colors duration-300">
-              <i class="fas fa-users text-2xl text-blue-500 mb-2"></i>
+            <div class="text-center p-4 border rounded-lg hover:border-[#10b981] transition-colors duration-300">
+              <i class="fas fa-users text-2xl text-[#10b981] mb-2"></i>
               <p class="text-gray-600">Số chỗ còn lại</p>
               <p class="font-bold">{{ tour.seatsLeft }}</p>
             </div>
-            <div class="text-center p-4 border rounded-lg hover:border-blue-500 transition-colors duration-300">
-              <i class="fas fa-map-marker-alt text-2xl text-blue-500 mb-2"></i>
+            <div class="text-center p-4 border rounded-lg hover:border-[#10b981] transition-colors duration-300">
+              <i class="fas fa-map-marker-alt text-2xl text-[#10b981] mb-2"></i>
               <p class="text-gray-600">Khởi hành từ</p>
               <p class="font-bold">{{ tour.departureLocation }}</p>
             </div>
@@ -457,14 +457,14 @@
         <div class="bg-white rounded-xl p-6 shadow-lg sticky top-24 mb-6">
           <div class="mb-6">
             <p class="text-gray-600 line-through">Giá gốc: {{ formatPrice(tour.pricing.adult.original) }}</p>
-            <p class="text-3xl font-bold text-blue-600">{{ formatPrice(tour.pricing.adult.discounted) }}</p>
+            <p class="text-3xl font-bold text-[#10b981]">{{ formatPrice(tour.pricing.adult.discounted) }}</p>
           </div>
           
           <button @click="handleBooking" 
-                  class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3 rounded-lg hover:from-blue-700 hover:to-blue-900 transition-all duration-300 mb-4">
+                  class="w-full bg-custom-gradient text-white py-3 rounded-lg hover:from-blue-700 hover:to-blue-900 transition-all duration-300 mb-4">
             <i class="fas fa-shopping-cart mr-2"></i>Đặt tour
           </button>
-          <button class="w-full border-2 border-blue-600 text-blue-600 py-3 rounded-lg hover:bg-blue-50 transition-all duration-300">
+          <button class="w-full border-2 border-[#10b981] text-[#10b981] py-3 rounded-lg hover:bg-blue-50 transition-all duration-300">
             <i class="fas fa-comments mr-2"></i>Tư vấn ngay
           </button>
         </div>

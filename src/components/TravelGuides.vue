@@ -3,9 +3,9 @@
         <div class="container mx-auto px-4 py-8">
             <!-- Title Section -->
             <div class="flex justify-between items-center mb-8 animate-fade-in-down">
-                <h1 class="text-3xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:scale-105 transition-all duration-300">Cẩm nang du lịch</h1>
-                <button class="px-8 py-4 bg-gradient-to-r from-indigo-500 via-blue-500 to-teal-500 text-white rounded-full hover:scale-110 transform transition-all duration-300 ease-in-out shadow-lg hover:shadow-2xl font-semibold flex items-center gap-3 hover:rotate-1">
-                    <span class="text-lg">View All</span>
+                <h1 class="text-3xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r mb-8 text-center text-[#30876a] inline-block drop-shadow-lg leading-relaxed hover:scale-105 transition-all duration-300">Cẩm nang du lịch</h1>
+                <button class="px-8 py-4 bg-custom-gradient  text-white rounded-full hover:scale-110 transform transition-all duration-300 ease-in-out shadow-lg hover:shadow-2xl font-semibold flex items-center gap-3 hover:rotate-1">
+                    <span class="text-lg">Xem tất cả</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>

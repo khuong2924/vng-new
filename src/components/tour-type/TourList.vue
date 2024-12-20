@@ -9,11 +9,11 @@
           <div class="relative">
             <img :src="tour.image" :alt="tour.name" class="w-full h-48 object-cover">
             <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 card-overlay">
-              <button class="view-details-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center">
+              <button class="view-details-btn bg-custom-gradient text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center">
                 <i class="fas fa-info-circle mr-2"></i> View Details
               </button>
             </div>
-            <span class="absolute top-2 left-2 bg-blue-500 bg-opacity-60 text-white px-3 py-1 rounded-full flex items-center text-sm font-semibold transition duration-300 ease-in-out transform hover:bg-opacity-80 hover:scale-105">
+            <span class="absolute top-2 left-2 bg-custom-gradient text-white px-3 py-1 rounded-full flex items-center text-sm font-semibold transition duration-300 ease-in-out transform hover:bg-opacity-80 hover:scale-105">
               <div class="flex items-center gap-2">
                 <svg v-if="tour.vehicle === 'Plane'" 
                      xmlns="http://www.w3.org/2000/svg" 
@@ -47,7 +47,7 @@
               <i class="fas fa-plane-departure mr-2"></i>
               <span>{{ tour.departure }}</span>
             </p>
-            <p class="text-lg font-bold text-blue-500 mb-4 flex items-center">
+            <p class="text-lg font-bold text-[#10b981] mb-4 flex items-center">
               <i class="fas fa-tag mr-2"></i>
               <span>{{ tour.price }} đ</span>
             </p>
