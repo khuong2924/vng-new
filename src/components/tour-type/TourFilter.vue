@@ -1,7 +1,7 @@
 <template>
-  <section class="bg-gradient-to-br p-4" x-data="tourFilter()" x-init="AOS.init();">
+  <section class=" p-4" x-data="tourFilter()" x-init="AOS.init();">
     <div class="max-w-6xl mx-auto">
-      <div class="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-3xl shadow-2xl p-8 mb-0" data-aos="fade-up" data-aos-delay="200">
+      <div class="bg-white bg-custom-gradient backdrop-filter backdrop-blur-lg rounded-3xl shadow-2xl p-8 mb-0" data-aos="fade-up" data-aos-delay="200">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           <!-- Location Filter -->
           <div class="space-y-2" data-aos="fade-right" data-aos-delay="300">
@@ -12,7 +12,7 @@
               </svg>
               Location
             </label>
-            <select v-model="filters.location" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-full transition duration-300 ease-in-out hover:border-indigo-300">
+            <select v-model="filters.location" class="block w-full pl-3 pr-10 py-2 text-base border-green-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-full transition duration-300 ease-in-out hover:border-indigo-300">
               <option value="">All Locations</option>
               <option>Paris</option>
               <option>Rome</option>
@@ -75,7 +75,7 @@
 
           <!-- Find Tours Button -->
           <div class="flex items-end justify-center lg:justify-start" data-aos="fade-left" data-aos-delay="700">
-            <button @click="applyFilters" class="w-full lg:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2 rounded-full text-lg font-semibold hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg">
+            <button @click="applyFilters" class="w-full lg:w-auto bg-#99f6e4 text-white px-6 py-2 rounded-full text-lg font-semibold hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
