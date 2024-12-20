@@ -22,16 +22,16 @@
     <!-- Countries Supported Section -->
     <section class="py-16 bg-white">
       <div class="container mx-auto px-4 flex flex-wrap items-center">
-        <div class="w-full lg:w-1/2 mb-8 lg:mb-0">
+        <div id="countries-supported" class="w-full lg:w-2/5 mb-8 lg:mb-0">
           <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-8 shadow-lg transform transition duration-500 hover:scale-105">
             <h2 class="text-3xl font-bold mb-4">Countries Supported</h2>
             <div class="text-6xl font-bold">
-              <span>{{ count }}</span>
+              <span>{{ count }} +</span>
             </div>
             <p class="mt-2">and growing every day!</p>
           </div>
         </div>
-        <div class="w-full lg:w-1/2">
+        <div id="slider-countries" class="w-full lg:w-2/5 ml-32">
           <swiper
             :modules="[SwiperEffectCoverflow, SwiperPagination, SwiperAutoplay]"
             :effect="'coverflow'"
@@ -52,121 +52,115 @@
             }"
             class="mySwiper"
           >
-            <swiper-slide>
-              <img src="https://source.unsplash.com/400x300/?usa" alt="USA" class="w-full h-64 object-cover rounded-lg shadow-md">
-            </swiper-slide>
-            <swiper-slide>
-              <img src="https://source.unsplash.com/400x300/?japan" alt="Japan" class="w-full h-64 object-cover rounded-lg shadow-md">
-            </swiper-slide>
-            <swiper-slide>
-              <img src="https://source.unsplash.com/400x300/?france" alt="France" class="w-full h-64 object-cover rounded-lg shadow-md">
-            </swiper-slide>
-            <swiper-slide>
-              <img src="https://source.unsplash.com/400x300/?australia" alt="Australia" class="w-full h-64 object-cover rounded-lg shadow-md">
+            <swiper-slide v-for="(slide, index) in slides" :key="index">
+              <img :src="slide.img" :alt="slide.alt" class="w-full h-64 object-cover rounded-lg shadow-md">
             </swiper-slide>
           </swiper>
         </div>
       </div>
     </section>
 
-    <!-- Visa Price List Section -->
+    <!-- Combined Price List and FAQ Section -->
     <section class="py-16 bg-gray-100">
       <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold mb-8 text-center text-gray-800">Visa Price List</h2>
-        <div class="overflow-x-auto">
-            <table class="w-full bg-white shadow-xl rounded-lg overflow-hidden">
-                    <thead class="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-                        <tr>
-                            <th class="py-3 px-4 text-left">Country</th>
-                            <th class="py-3 px-4 text-left">Visa Type</th>
-                            <th class="py-3 px-4 text-left">Review Time</th>
-                            <th class="py-3 px-4 text-left">Reference Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-300">
-                            <td class="py-3 px-4">
-                                <div class="flex items-center">
-                                    <img src="https://flagcdn.com/w40/us.png" alt="USA" class="w-6 h-4 mr-2">
-                                    USA
-                                </div>
-                            </td>
-                            <td class="py-3 px-4">Tourist</td>
-                            <td class="py-3 px-4">3-5 business days</td>
-                            <td class="py-3 px-4">$160</td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-300">
-                            <td class="py-3 px-4">
-                                <div class="flex items-center">
-                                    <img src="https://flagcdn.com/w40/jp.png" alt="Japan" class="w-6 h-4 mr-2">
-                                    Japan
-                                </div>
-                            </td>
-                            <td class="py-3 px-4">Business</td>
-                            <td class="py-3 px-4">5-7 business days</td>
-                            <td class="py-3 px-4">$80</td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-300">
-                            <td class="py-3 px-4">
-                                <div class="flex items-center">
-                                    <img src="https://flagcdn.com/w40/fr.png" alt="France" class="w-6 h-4 mr-2">
-                                    France
-                                </div>
-                            </td>
-                            <td class="py-3 px-4">Schengen</td>
-                            <td class="py-3 px-4">10-15 business days</td>
-                            <td class="py-3 px-4">€80</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 transition duration-300">
-                            <td class="py-3 px-4">
-                                <div class="flex items-center">
-                                    <img src="https://flagcdn.com/w40/au.png" alt="Australia" class="w-6 h-4 mr-2">
-                                    Australia
-                                </div>
-                            </td>
-                            <td class="py-3 px-4">eVisitor</td>
-                            <td class="py-3 px-4">1-2 business days</td>
-                            <td class="py-3 px-4">Free</td>
-                        </tr>
-                    </tbody>
-                </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-16 bg-white">
-      <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold mb-8 text-center text-gray-800">Frequently Asked Questions</h2>
-        <div class="max-w-3xl mx-auto">
-          <div v-for="(faq, index) in faqs" :key="index" class="mb-4">
-            <button @click="toggleFaq(index)" class="flex justify-between items-center w-full p-4 bg-gray-200 rounded-lg focus:outline-none transition duration-300 hover:bg-gray-300">
-              <span class="text-lg font-semibold">{{ faq.question }}</span>
-              <svg :class="{'rotate-180': faq.isOpen}" class="w-5 h-5 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-              </svg>
-            </button>
-            <div v-show="faq.isOpen" class="mt-2 p-4 bg-gray-100 rounded-lg">
-              {{ faq.answer }}
+        <div class="flex flex-col lg:flex-row lg:space-x-8">
+          <!-- Price List Section (70%) -->
+          <div class="w-full lg:w-[60%] mb-8 lg:mb-0">
+            <h2 class="text-4xl font-bold mb-8 text-center text-gray-800">Visa Price List</h2>
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white shadow-xl rounded-lg overflow-hidden">
+                <thead class="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                  <tr>
+                    <th class="py-3 px-4 text-left">Country</th>
+                    <th class="py-3 px-4 text-left">Visa Type</th>
+                    <th class="py-3 px-4 text-left">Review Time</th>
+                    <th class="py-3 px-4 text-left">Reference Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-300">
+                    <td class="py-3 px-4">
+                      <div class="flex items-center">
+                        <img src="https://flagcdn.com/w40/us.png" alt="USA" class="w-6 h-4 mr-2">
+                        USA
+                      </div>
+                    </td>
+                    <td class="py-3 px-4">Tourist</td>
+                    <td class="py-3 px-4">3-5 business days</td>
+                    <td class="py-3 px-4">$160</td>
+                  </tr>
+                  <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-300">
+                    <td class="py-3 px-4">
+                      <div class="flex items-center">
+                        <img src="https://flagcdn.com/w40/jp.png" alt="Japan" class="w-6 h-4 mr-2">
+                        Japan
+                      </div>
+                    </td>
+                    <td class="py-3 px-4">Business</td>
+                    <td class="py-3 px-4">5-7 business days</td>
+                    <td class="py-3 px-4">$80</td>
+                  </tr>
+                  <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-300">
+                    <td class="py-3 px-4">
+                      <div class="flex items-center">
+                        <img src="https://flagcdn.com/w40/fr.png" alt="France" class="w-6 h-4 mr-2">
+                        France
+                      </div>
+                    </td>
+                    <td class="py-3 px-4">Schengen</td>
+                    <td class="py-3 px-4">10-15 business days</td>
+                    <td class="py-3 px-4">€80</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition duration-300">
+                    <td class="py-3 px-4">
+                      <div class="flex items-center">
+                        <img src="https://flagcdn.com/w40/au.png" alt="Australia" class="w-6 h-4 mr-2">
+                        Australia
+                      </div>
+                    </td>
+                    <td class="py-3 px-4">eVisitor</td>
+                    <td class="py-3 px-4">1-2 business days</td>
+                    <td class="py-3 px-4">Free</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          <div class="mt-8 flex justify-center space-x-4">
-            <button 
-              id="check-pass-rate"
-              @click="openModal"
-              class="bg-white text-blue-600 font-bold py-4 px-8 rounded-full shadow-lg transform transition duration-300 ease-in-out hover:scale-110 flex items-center space-x-2 float"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>Check Pass Rate</span>
-            </button>
-            <button 
-              @click="handleConsultation" 
-              class="bg-gradient-to-r from-green-500 to-teal-500 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-teal-600 transition duration-300 transform hover:scale-105"
-            >
-              Register for Consultation
-            </button>
+
+          <!-- FAQ Section -->
+          <div class="w-full lg:w-[40%]">
+            <div id="faq-content" class="bg-gray-200 p-6 rounded-lg h-full">
+              <h3 class="text-2xl text-center font-bold mb-4">Giải đáp mọi thắc mắc của bạn về dịch vụ Visa</h3>
+              <p class="text-lg text-center mb-4">Với đội ngũ nhân viên dày dặn kinh nghiệm, VNGroup Travel sẽ giải đáp toàn bộ thắc mắc của bạn về Visa</p>
+              <div class="mt-8 bg-gray-200 rounded-lg">
+                <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+                 
+                  <button 
+                    id="register"
+                    @click="openModal"
+                    class="bg-white text-blue-600 font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 ease-in-out hover:bg-blue-50 flex items-center justify-center space-x-2"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Đăng ký tư vấn</span>
+                  </button>
+                </div>
+                <div class="flex flex-col mt-4 md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+
+                <button 
+                    id="check-pass-rate"
+                    @click="openModal"
+                    class="bg-white text-blue-600 font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 ease-in-out hover:bg-blue-50 flex items-center justify-center space-x-2"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Check Pass Rate</span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -435,6 +429,11 @@
 
 <script>
 import { ref, onMounted } from 'vue'
+// Import visa images
+import visa1 from '@/assets/img/visa1.jpg';
+import visa2 from '@/assets/img/visa2.jpg';
+import visa3 from '@/assets/img/visa3.jpg';
+
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
 // Import Swiper modules
@@ -445,7 +444,6 @@ import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 import lottie from 'lottie-web'
 import 'animate.css'
-
 export default {
   name: 'VisaService',
   components: {
@@ -501,6 +499,13 @@ export default {
       }
     ])
 
+    const slides = [
+      { img: visa1, alt: 'USA' },
+      { img: visa2, alt: 'Japan' },
+      { img: visa3, alt: 'France' },
+      { img: visa2, alt: 'Australia' }
+    ]
+
     const toggleFaq = (index) => {
       faqs.value[index].isOpen = !faqs.value[index].isOpen
     }
@@ -523,7 +528,7 @@ export default {
       const animationUrls = {
         receive: 'https://assets2.lottiefiles.com/packages/lf20_u25cckyh.json',
         profile: 'https://assets2.lottiefiles.com/packages/lf20_khzniaya.json',
-        review: 'https://assets10.lottiefiles.com/packages/lf20_vvmwwna6.json',
+        review: '../src/components/icons/review-gif.json',
         results: 'https://assets2.lottiefiles.com/packages/lf20_9wpyhdzo.json'
       }
 
@@ -570,9 +575,11 @@ export default {
       SwiperAutoplay: Autoplay,
       openModal,
       closeModal,
+      slides,
     }
   }
 }
+
 </script>
 
 <style scoped>
@@ -625,7 +632,7 @@ export default {
 }
 
 /* Add the float animation */
-@keyframes float {
+/* @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
@@ -633,7 +640,7 @@ export default {
 
 .float {
   animation: float 3s ease-in-out infinite;
-}
+} */
 
 .scale-hover:hover {
   transform: scale(1.05);
