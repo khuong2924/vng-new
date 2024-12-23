@@ -211,21 +211,25 @@
             <div class="space-y-2">
               <label class="flex items-center">
                 <input type="radio" v-model="formData.country" name="country" value="usa" class="form-radio text-blue-600">
-                <span class="ml-2">USA</span>
+                <span class="ml-2">Mỹ</span>
               </label>
               <label class="flex items-center">
                 <input type="radio" v-model="formData.country" name="country" value="canada" class="form-radio text-blue-600">
-                <span class="ml-2">Canada</span>
+                <span class="ml-2">Úc</span>
               </label>
               <label class="flex items-center">
                 <input type="radio" v-model="formData.country" name="country" value="uk" class="form-radio text-blue-600">
-                <span class="ml-2">UK</span>
+                <span class="ml-2">Hàn quốc</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" v-model="formData.country" name="country" value="uk" class="form-radio text-blue-600">
+                <span class="ml-2">Các nước châu Âu</span>
               </label>
             </div>
           </div>
 
           <!-- Marital status -->
-          <div class="bg-purple-50 p-4 rounded-lg scale-hover">
+          <!-- <div class="bg-purple-50 p-4 rounded-lg scale-hover">
             <label class="block text-lg font-medium text-purple-700 mb-2 flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -246,26 +250,9 @@
                 <span class="ml-2">Góa chồng/vợ</span>
               </label>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Place of birth in province -->
-          <div class="bg-green-50 p-4 rounded-lg scale-hover">
-            <label class="block text-lg font-medium text-green-700 mb-2 flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              Nơi sinh bạn ở các tỉnh: Thanh Hóa, Hà Tĩnh, Quảng Trị, ...
-            </label>
-            <label class="flex items-center">
-              <input type="checkbox" v-model="formData.birthInProvince" name="birth_in_province" class="form-checkbox text-green-600">
-              <span class="ml-2">Đúng</span>
-            </label>
-            <label class="flex items-center">
-              <input type="checkbox" v-model="formData.birthInProvince" name="birth_in_province" class="form-checkbox text-green-600">
-              <span class="ml-2">Sai</span>
-            </label>
-          </div>
+        
 
           <!-- International travel history -->
           <div class="bg-yellow-50 p-4 rounded-lg scale-hover">
@@ -278,44 +265,36 @@
             <div class="space-y-2">
               <label class="flex items-center">
                 <input type="checkbox" v-model="formData.travelHistory" value="europe" class="form-checkbox text-yellow-600">
-                <span class="ml-2">Du lịch các nước Đông Nam Á</span>
+                <span class="ml-2">Hộ chiếu trắng</span>
               </label>
               <label class="flex items-center">
                 <input type="checkbox" v-model="formData.travelHistory" value="asia" class="form-checkbox text-yellow-600">
-                <span class="ml-2">Du lịch Trung Quốc</span>
+                <span class="ml-2">Đã đi 1 nước Đông Nam Á trong 1 năm gần đây</span>
               </label>
               <label class="flex items-center">
                 <input type="checkbox" v-model="formData.travelHistory" value="americas" class="form-checkbox text-yellow-600">
-                <span class="ml-2">Du lịch các nước Châu Á</span>
+                <span class="ml-2">Đã đi 1 nước Đông Nam Á trên 1 năm</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" v-model="formData.travelHistory" value="americas" class="form-checkbox text-yellow-600">
+                <span class="ml-2">Đã đi 2-3 nước Đông Nam Á trong 1 năm gần đây</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" v-model="formData.travelHistory" value="americas" class="form-checkbox text-yellow-600">
+                <span class="ml-2">Đã đi 2-3 nước Đông Nam Á trên 1 năm</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" v-model="formData.travelHistory" value="americas" class="form-checkbox text-yellow-600">
+                <span class="ml-2">Đã từng đi các nước Đông Nam Á, Nhật, Hàn</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" v-model="formData.travelHistory" value="americas" class="form-checkbox text-yellow-600">
+                <span class="ml-2">Đã từng đi Hàn, Nhật, Mỹ, Úc, các nước EU</span>
               </label>
             </div>
           </div>
 
-          <!-- Visa rejections -->
-          <div class="bg-red-50 p-4 rounded-lg scale-hover">
-            <label class="block text-lg font-medium text-red-700 mb-2 flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Bạn đã từng bị từ chối Visa lần nào chưa?
-            </label>
-            <div class="space-y-2">
-              <label class="flex items-center">
-                <input type="radio" v-model="formData.visaRejections" name="visa_rejections" value="0" class="form-radio text-red-600">
-                <span class="ml-2">Chưa</span>
-              </label>
-              <label class="flex items-center">
-                <input type="radio" v-model="formData.visaRejections" name="visa_rejections" value="1-2" class="form-radio text-red-600">
-                <span class="ml-2">1-2 lần</span>
-              </label>
-              <label class="flex items-center">
-                <input type="radio" v-model="formData.visaRejections" name="visa_rejections" value="3+" class="form-radio text-red-600">
-                <span class="ml-2">nhiều hơn 3 lần</span>
-              </label>
-            </div>
-          </div>
 
-          <!-- Current job -->
           <div class="bg-indigo-50 p-4 rounded-lg scale-hover">
             <label class="block text-lg font-medium text-indigo-700 mb-2 flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -327,19 +306,39 @@
               <label class="flex items-center">
                 <input type="radio" v-model="formData.currentJob" name="current_job" value="employed" class="form-radio text-indigo-600">
                 <span class="ml-2">
-                  Kinh doanh tự do</span>
+                  Công việc tự do (Không chứng minh được công việc)</span>
               </label>
               <label class="flex items-center">
                 <input type="radio" v-model="formData.currentJob" name="current_job" value="self-employed" class="form-radio text-indigo-600">
-                <span class="ml-2">Nhân viên (có Bảo hiểm xã hội)</span>
+                <span class="ml-2">Công việc tự do (Chứng minh được công việc)</span>
               </label>
               <label class="flex items-center">
                 <input type="radio" v-model="formData.currentJob" name="current_job" value="student" class="form-radio text-indigo-600">
-                <span class="ml-2">Nhân viên (không có Bảo hiểm xã hội)</span>
+                <span class="ml-2">Nhân viên không có sao kê lương, ko có BHXH (nhận lương tiền mặt)</span>
               </label>
               <label class="flex items-center">
                 <input type="radio" v-model="formData.currentJob" name="current_job" value="unemployed" class="form-radio text-indigo-600">
-                <span class="ml-2">Không có việc làm</span>
+                <span class="ml-2">Nhân viên có sao kê lương, có BHXH dưới 06 tháng	</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" v-model="formData.currentJob" name="current_job" value="unemployed" class="form-radio text-indigo-600">
+                <span class="ml-2">Nhân viên có sao kê lương, có BHXH trên 01 năm</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" v-model="formData.currentJob" name="current_job" value="unemployed" class="form-radio text-indigo-600">
+                <span class="ml-2">Chủ doanh nghiệp, có đóng thuế VAT trên 01 năm, có sao kê tài khoản công ty</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" v-model="formData.currentJob" name="current_job" value="unemployed" class="form-radio text-indigo-600">
+                <span class="ml-2">Chủ hộ kinh doanh có đóng thuế VAT dưới 01 năm</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" v-model="formData.currentJob" name="current_job" value="unemployed" class="form-radio text-indigo-600">
+                <span class="ml-2">Chủ hộ kinh doanh có đóng thuế VAT trên 01 năm</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" v-model="formData.currentJob" name="current_job" value="unemployed" class="form-radio text-indigo-600">
+                <span class="ml-2">Viên chức nhà nước</span>
               </label>
             </div>
           </div>
@@ -350,20 +349,28 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Thu nhập trung bình hàng tháng của bạn:
+              Bạn có sổ tiết kiệm không nè?
             </label>
             <div class="space-y-2">
               <label class="flex items-center">
                 <input type="radio" v-model="formData.averageIncome" name="average_income" value="low" class="form-radio text-pink-600">
-                <span class="ml-2">Thu nhập trên 50 triệu</span>
+                <span class="ml-2"> Không có sổ tiết kiệm</span>
               </label>
               <label class="flex items-center">
                 <input type="radio" v-model="formData.averageIncome" name="average_income" value="medium" class="form-radio text-pink-600">
-                <span class="ml-2">Thu nhập từ 20-50 triệu</span>
+                <span class="ml-2">Sổ tiết kiệm dưới 150tr</span>
               </label>
               <label class="flex items-center">
                 <input type="radio" v-model="formData.averageIncome" name="average_income" value="high" class="form-radio text-pink-600">
-                <span class="ml-2">Thu nhập dưới 20 triệu</span>
+                <span class="ml-2">Sổ tiết kiệm hơn 200tr</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" v-model="formData.averageIncome" name="average_income" value="high" class="form-radio text-pink-600">
+                <span class="ml-2">Sổ tiết kiệm hơn 300tr</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" v-model="formData.averageIncome" name="average_income" value="high" class="form-radio text-pink-600">
+                <span class="ml-2">Sổ tiết kiệm hơn 500tr</span>
               </label>
             </div>
           </div>
@@ -374,25 +381,25 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
-              Thông tin khả năng tài chính, tài sản của bạn
+              Vậy còn những tài sản khác thì sao?
             </label>
             <div class="space-y-2">
               <label class="flex items-center">
                 <input type="radio" v-model="formData.financialAbility" name="financial_ability" value="low" class="form-radio text-teal-600">
-                <span class="ml-2">Giấy tờ nhà đất (sổ hồng, sổ đỏ, hợp đồng mua bán)</span>
+                <span class="ml-2">Không có nhà đất</span>
               </label>
               <label class="flex items-center">
                 <input type="radio" v-model="formData.financialAbility" name="financial_ability" value="medium" class="form-radio text-teal-600">
                 <span class="ml-2">
-                  Sổ tiết kiệm trên 200 triệu</span>
+                  1 nhà đất</span>
               </label>
               <label class="flex items-center">
                 <input type="radio" v-model="formData.financialAbility" name="financial_ability" value="high" class="form-radio text-teal-600">
-                <span class="ml-2">Sổ tiết kiệm dưới 200 triệu</span>
+                <span class="ml-2">1 nhà đất + xe hơi</span>
               </label>
               <label class="flex items-center">
                 <input type="radio" v-model="formData.financialAbility" name="financial_ability" value="high" class="form-radio text-teal-600">
-                <span class="ml-2">Không có tài sản, tài chính</span>
+                <span class="ml-2">2 nhà đất trở lên + xe hơi</span>
               </label>
             </div>
           </div>
