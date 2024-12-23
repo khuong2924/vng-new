@@ -179,7 +179,7 @@
                 <div id="reason-content" class="mb-4">
                     <button 
                         @click="toggleFAQ" 
-                        class="flex justify-between items-center w-full p-4 bg-gray-200 rounded-lg focus:outline-none transition duration-300 hover:bg-gray-300"
+                        class="flex justify-between items-center w-full p-4 bg-custom-gradient rounded-lg focus:outline-none transition duration-300 hover:bg-green-300"
                     >
                         <span class="text-lg font-semibold">Lý do nên chọn dịch vụ VISA - VNGroup Tourist</span>
                         <i :class="{'ri-arrow-up-s-line': open, 'ri-arrow-down-s-line': !open}" class="text-2xl"></i>
@@ -248,7 +248,7 @@
                                 <div>
                                     <h3 class="text-lg font-semibold mb-2 text-gray-800">Bảo mật & Hỗ trợ</h3>
                                     <p class="text-gray-600 leading-relaxed">
-                                        Sự hài lòng của khách hàng luôn là mục tiêu hàng đầu của chúng tôi. Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp mọi thắc mắc của quý khách trong suốt quá trình làm hồ sơ. Đồng thời bảo mật thông tin khách hàng một cách tuyệt đối.
+                                      Sự hài lòng của khách hàng luôn là mục tiêu hàng đầu của chúng tôi. Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp mọi thắc mắc của quý khách trong suốt quá trình làm hồ sơ. Đồng thời bảo mật thông tin khách hàng một cách tuyệt đối.
                                     </p>
                                 </div>
                             </div>
@@ -256,11 +256,14 @@
                     </div>
                     </transition>
                 </div>
+
+
+                
                 <!-- Add more FAQ items here -->
                 <div id="visa-content" class="mb-4">
                   <button 
                       @click="toggleVisaDocs" 
-                      class="flex justify-between items-center w-full p-4 bg-gray-200 rounded-lg focus:outline-none transition duration-300 hover:bg-gray-300"
+                      class="flex justify-between items-center w-full p-4 bg-custom-gradient rounded-lg focus:outline-none transition duration-300 hover:bg-green-300"
                   >
                       <span id="visa-title" class="text-lg font-semibold">Những gì bạn cần cho Hồ sơ VISA</span>
                       <i :class="{'ri-arrow-up-s-line': open2, 'ri-arrow-down-s-line': !open2}" class="text-2xl"></i>
@@ -281,10 +284,12 @@
                           <div class="mb-6 transform transition duration-500 hover:scale-105">
                               <div class="flex items-start space-x-4">
                                   <div class="flex-shrink-0">
-                                  <div class="p-3 bg-blue-100 rounded-full">
-                                      <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                      </svg>
+                                  <div class="p-3 bg-green-100 rounded-full">
+                                    <img 
+                                          src="../assets/img/documents_1548205.png" 
+                                          alt="Passport Icon"
+                                          class="w-6 h-6"
+                                      />
                                   </div>
                                   </div>
                                   <div>
@@ -298,11 +303,13 @@
                           <div class="mb-6 transform transition duration-500 hover:scale-105">
                               <div class="flex items-start space-x-4">
                                   <div class="flex-shrink-0">
-                                  <div class="p-3 bg-green-100 rounded-full">
-                                      <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-                                      </svg>
-                                  </div>
+                                    <div id="visa-content-info-icon" class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/passport_620686.png" 
+                                          alt="Passport Icon"
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
                                   </div>
                                   <div>
                                   <p class="text-gray-700 leading-relaxed">
@@ -312,27 +319,203 @@
                               </div>
                           </div>
 
-                          <!-- Reason 3 -->
-                          <div class="transform transition duration-500 hover:scale-105">
+                         
+                          <div class="mb-6 transform transition duration-500 hover:scale-105">
                               <div class="flex items-start space-x-4">
                                   <div class="flex-shrink-0">
-                                      <div class="p-3 bg-purple-100 rounded-full">
-                                          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                          </svg>
-                                      </div>
+                                    <div id="visa-content-info-icon" class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/resume_3033614.png" 
+                                          alt="Passport Icon"
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
                                   </div>
                                   <div>
-                                      <h3 class="text-lg font-semibold mb-2 text-gray-800">Bảo mật & Hỗ trợ</h3>
-                                      <p class="text-gray-600 leading-relaxed">
-                                          Sự hài lòng của khách hàng luôn là mục tiêu hàng đầu của chúng tôi. Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp mọi thắc mắc của quý khách trong suốt quá trình làm hồ sơ. Đồng thời bảo mật thông tin khách hàng một cách tuyệt đối.
-                                      </p>
+                                  <p class="text-gray-700 leading-relaxed">
+                                    Ảnh chụp trên phông nền trắng, chụp chính diện, khổ hình theo yêu cầu của từng loại visa và tùy vào Đại sứ quán.
+                                  </p>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                          <div class="mb-6 transform transition duration-500 hover:scale-105">
+                              <div class="flex items-start space-x-4">
+                                  <div class="flex-shrink-0">
+                                    <div id="visa-content-info-icon" class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/fingerprint_3045910.png" 
+                                          alt="Passport Icon"
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div>
+                                  <p class="text-gray-700 leading-relaxed">
+                                    Những giấy tờ chứng minh tình trạng cá nhân, các mối quan hệ nhân thân, xã hội: Căn cước công dân, Sổ hộ khẩu, Đăng ký kết hôn, Giấy khai sinh,…
+                                  </p>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="mb-6 transform transition duration-500 hover:scale-105">
+                              <div class="flex items-start space-x-4">
+                                  <div class="flex-shrink-0">
+                                    <div id="visa-content-info-icon" class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/document_2703428.png" 
+                                          alt="Passport Icon"
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div>
+                                  <p class="text-gray-700 leading-relaxed">
+                                    Giấy tờ có thể chứng minh mối quan hệ bạn bè, người thân tại nước bạn muốn đến và giấy tờ xác nhận tình trạng công việc hiện tại của bạn.
+                                  </p>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="mb-6 transform transition duration-500 hover:scale-105">
+                              <div class="flex items-start space-x-4">
+                                  <div class="flex-shrink-0">
+                                    <div id="visa-content-info-icon" class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/contract_1358615.png" 
+                                          alt="Passport Icon"
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div>
+                                  <p class="text-gray-700 leading-relaxed">
+                                    Giấy tờ chứng minh khả năng tài chính và tài sản: Giấy tờ chủ quyền tài sản (sở hữu nhà đất, cavet xe oto,…), giấy khai báo về thu nhập lợi tức (cổ phiếu, trái phiếu, nhà cho thuê,…), Giấy xác nhận mức lương nếu là nhân viên hoặc Giấy phép kinh doanh nếu là chủ doanh nghiệp,…
+                                  </p>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="mb-6 transform transition duration-500 hover:scale-105">
+                              <div class="flex items-start space-x-4">
+                                  <div class="flex-shrink-0">
+                                    <div id="visa-content-info-icon" class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/weekly_5242692.png" 
+                                          alt="Timmline Icon"
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div>
+                                  <p class="text-gray-700 leading-relaxed">
+                                    Lịch trình rõ ràng: nêu chi tiết lộ trình chuyến đi và thời gian lưu trú.
+                                  </p>
+                                  </div>
+                              </div>
+                          </div>
+
+                          
+                          <div class="mb-6 transform transition duration-500 hover:scale-105">
+                              <div class="flex items-start space-x-4">
+                                  <div class="flex-shrink-0">
+                                    <div id="visa-content-info-icon" class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/ticket_13415945.png" 
+                                          alt="Passport Icon"
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div>
+                                  <p class="text-gray-700 leading-relaxed">
+                                    Giấy tờ chứng minh đã đặt các dịch vụ khác cho chuyến đi như: Vé máy bay khứ hồi hoặc các loại vé vào cửa tham quan các công trình kiến trúc, vé thăm bảo tàng, vé tham dự hòa nhạc, vé tham dự triển lãm nghệ thuật,…
+                                  </p>
                                   </div>
                               </div>
                           </div>
                       </div>
-                  </transition>
+                  </transition>   
               </div>
+
+              <div id="reason-content" class="mb-4">
+                    <button 
+                        @click="toggleVisaDocs2" 
+                        class="flex justify-between items-center w-full p-4 bg-custom-gradient rounded-lg focus:outline-none transition duration-300 hover:bg-green-300"
+                    >
+                        <span class="text-lg font-semibold">Lệ phí làm VISA và Thời gian xét duyệt VISA</span>
+                        <i :class="{'ri-arrow-up-s-line': open, 'ri-arrow-down-s-line': !open}" class="text-2xl"></i>
+                    </button>
+                    
+                    <transition
+                        enter-active-class="transition ease-out duration-300"
+                        enter-from-class="opacity-0 transform scale-95"
+                        enter-to-class="opacity-100 transform scale-100"
+                        leave-active-class="transition ease-in duration-300"
+                        leave-from-class="opacity-100 transform scale-100"
+                        leave-to-class="opacity-0 transform scale-95"
+                    >
+                    <div id="reason-content"
+                        v-show="open3"
+                        class="mt-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg text-left shadow-lg border border-gray-100"
+                    >
+                        <div class="mb-6 transform transition duration-500 hover:scale-105">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/pay_625599.png" 
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 leading-relaxed">
+                                      Mức lệ phí mà bạn phải trả được xét theo từng loại Visa và từng Đại sứ quán.                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6 transform transition duration-500 hover:scale-105">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/deadline_14354278.png" 
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 leading-relaxed">
+                                      Thời gian để xét duyệt một visa của mỗi quốc gia là khác nhau. Tuy nhiên, trong vài trường hợp, thời gian xét duyệt có thể dài hơn dự kiến nếu hồ sơ cần được xác minh thêm.
+                                 </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Reason 3 -->
+                        <div class="transform transition duration-500 hover:scale-105">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/messages_5766603.png" 
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
+                                </div>
+                                <div>
+                                      <p class="text-gray-600 leading-relaxed">
+                                      Lời khuyên tốt nhất dành cho bạn là nên hoàn thiện hồ sơ xin visa sớm để đảm bảo cho việc khởi hành đúng lịch trình.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </transition>
+                </div>
+              
             </div>
         </div>
     </section>
@@ -645,6 +828,8 @@ export default {
       count: 0,
       open: false,
       open2: false,
+      open3: false,
+      open4: false,
       formData: {
         country: '',
         maritalStatus: '',
@@ -693,6 +878,13 @@ export default {
     toggleVisaDocs() {
       this.open2 = !this.open2
     },
+    toggleVisaDocs2() {
+      this.open3 = !this.open3
+    },
+    toggleVisaDocs3() {
+      this.open4 = !this.open4
+    },
+
     openModal() {
       this.isModalOpen = true
     },
