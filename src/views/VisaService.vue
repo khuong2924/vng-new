@@ -439,7 +439,7 @@
                   </transition>   
               </div>
 
-              <div id="reason-content" class="mb-4">
+              <div class="mb-4">
                     <button 
                         @click="toggleVisaDocs2" 
                         class="flex justify-between items-center w-full p-4 bg-custom-gradient rounded-lg focus:outline-none transition duration-300 hover:bg-green-300"
@@ -456,7 +456,7 @@
                         leave-from-class="opacity-100 transform scale-100"
                         leave-to-class="opacity-0 transform scale-95"
                     >
-                    <div id="reason-content"
+                    <div
                         v-show="open3"
                         class="mt-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg text-left shadow-lg border border-gray-100"
                     >
@@ -509,6 +509,82 @@
                                       <p class="text-gray-600 leading-relaxed">
                                       Lời khuyên tốt nhất dành cho bạn là nên hoàn thiện hồ sơ xin visa sớm để đảm bảo cho việc khởi hành đúng lịch trình.
                                     </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </transition>
+                </div>
+
+
+                <div class="mb-4">
+                    <button 
+                        @click="toggleVisaDocs3" 
+                        class="flex justify-between items-center w-full p-4 bg-custom-gradient rounded-lg focus:outline-none transition duration-300 hover:bg-green-300"
+                    >
+                        <span class="text-lg font-semibold">Phỏng vấn xin VISA</span>
+                        <i :class="{'ri-arrow-up-s-line': open, 'ri-arrow-down-s-line': !open}" class="text-2xl"></i>
+                    </button>
+                    
+                    <transition
+                        enter-active-class="transition ease-out duration-300"
+                        enter-from-class="opacity-0 transform scale-95"
+                        enter-to-class="opacity-100 transform scale-100"
+                        leave-active-class="transition ease-in duration-300"
+                        leave-from-class="opacity-100 transform scale-100"
+                        leave-to-class="opacity-0 transform scale-95"
+                    >
+                    <div
+                        v-show="open4"
+                        class="mt-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg text-left shadow-lg border border-gray-100"
+                    >
+                        <div class="mb-6 transform transition duration-500 hover:scale-105">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/pencil_3075908.png" 
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 leading-relaxed">
+                                      Đây là một trong những khâu quan trọng của quá trình xin visa. Khi phỏng vấn, bạn nên trả lời bằng tiếng Anh hoặc tiếng của đất nước mà bạn định đến.                                  </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6 transform transition duration-500 hover:scale-105">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/growing-up_3788609.png" 
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 leading-relaxed">
+                                      Đối với người dưới 17 tuổi khi đi phỏng vấn xin visa phải có bố mẹ hoặc người giám hộ hợp pháp đi kèm.                                 </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Reason 3 -->
+                        <div class="transform transition duration-500 hover:scale-105">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-green-100 rounded-full">
+                                      <img 
+                                          src="../assets/img/messages_5766603.png" 
+                                          class="w-6 h-6"
+                                      />
+                                    </div>
+                                </div>
+                                <div>
+                                      <p class="text-gray-600 leading-relaxed">
+                                        Lưu ý: Khi nộp hồ sơ xin visa và khi nhận visa bạn nhớ mang theo Căn cước công dân bản gốc.                                    </p>
                                 </div>
                             </div>
                         </div>
