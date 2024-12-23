@@ -34,7 +34,7 @@
         </div>
 
         <!-- Tour Title -->
-        <h1 class="text-4xl font-bold mb-6 text-center font-poppins bg-gradient-to-r text-[#10b981] text-transparent bg-clip-text motion-scale-in-[0.49] motion-translate-x-in-[-120%] motion-translate-y-in-[-60%] motion-opacity-in-[33%] motion-rotate-in-[-1080deg] motion-blur-in-[10px] motion-duration-[0.75s]/scale motion-delay-[0.21s]/scale motion-duration-[0.69s]/translate motion-duration-[0.68s]/opacity motion-duration-[0.72s]/rotate motion-duration-[0.15s]/blur motion-delay-[0.60s]/blur motion-ease-spring-bouncier">
+        <h1 class="text-5xl font-bold mb-6 text-center font-poppins text-[#10b981] motion-scale-in-[0.49] motion-translate-x-in-[-120%] motion-translate-y-in-[-60%] motion-opacity-in-[33%] motion-rotate-in-[-1080deg] motion-blur-in-[10px] motion-duration-[0.75s]/scale motion-delay-[0.21s]/scale motion-duration-[0.69s]/translate motion-duration-[0.68s]/opacity motion-duration-[0.72s]/rotate motion-duration-[0.15s]/blur motion-delay-[0.60s]/blur motion-ease-spring-bouncier">
           {{ tour.title }}
         </h1>
 
@@ -60,7 +60,7 @@
             <div class="text-center p-4 border rounded-lg hover:border-[#10b981] transition-colors duration-300">
               <i class="fas fa-map-marker-alt text-2xl text-[#10b981] mb-2"></i>
               <p class="text-gray-600">Khởi hành từ</p>
-              <p class="font-bold">{{ tour.departureLocation }}</p>
+              <p class="font-bold">{{ tour.departureLocation }}</p>                                 
             </div>
           </div>
         </div>
