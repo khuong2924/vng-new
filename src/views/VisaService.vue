@@ -12,10 +12,18 @@
     <section class="py-4">
       <div class="container mx-auto px-16 flex flex-wrap items-center">
         <div id="countries-supported" class="w-full lg:w-2/5 mb-0 lg:mb-4">
-          <div class="relative bg-cover bg-center rounded-lg p-24 shadow-lg transform transition duration-500 hover:scale-105 overflow-hidden h-[210px]" 
-               :style="{ backgroundImage: `url(${getImageUrl()})`, backgroundSize: '115%', backgroundRepeat: 'no-repeat' }">
+          <div class="relative rounded-lg p-24 shadow-lg transform transition duration-500 hover:scale-105 h-[330px]">
+            <!-- Background image div - removed overflow-hidden -->
+            <div class="absolute inset-0 z-0 w-full h-full">
+              <img 
+                :src="getImageUrl()"
+                alt="Visa Card" 
+                class="w-full h-full object-cover object-center rounded-lg"
+              >
+            </div>
+            
             <!-- Content -->
-            <div class="relative z-2 text-white mr-32 mt-0">
+            <div class="relative z-2 text-white mr-32 ml-20 mt-20">
 
               <div id="countries-supported-count" class="text-7xl ml-4 font-extrabold mb-4">
                 <span class="bg-gradient-to-r from-blue-500 via-cyan-300 to-gray-300 inline-block text-transparent bg-clip-text drop-shadow-lg">{{ count }}+</span>
@@ -28,7 +36,7 @@
         </div>
         <div id="slider-countries" class="w-full lg:w-2/5 ml-32">
           <swiper
-            :modules="[SwiperEffectCoverflow, SwiperPagination, SwiperAutoplay]"
+            :modules="modules"
             :effect="'coverflow'"
             :grabCursor="true"
             :centeredSlides="true"
@@ -163,10 +171,176 @@
       </div>
     </section>
 
+
+    <section class="py-16 bg-white">
+        <div class="container text-center mx-auto px-4" data-aos="fade-up">
+          <h2 id="reason-title" class="text-2xl font-bold mb-8 text-center bg-gradient-to-r from-blue-900 via-cyan-900 to-gray-900 inline-block text-transparent bg-clip-text drop-shadow-lg leading-relaxed">Hãy để chúng tôi lo liệu mọi thứ, bạn chỉ cần chuẩn bị hành lý và sẵn sàng cho chuyến đi của mình!</h2>
+            <div class="max-w-3xl mx-auto">
+                <div id="reason-content" class="mb-4">
+                    <button 
+                        @click="toggleFAQ" 
+                        class="flex justify-between items-center w-full p-4 bg-gray-200 rounded-lg focus:outline-none transition duration-300 hover:bg-gray-300"
+                    >
+                        <span class="text-lg font-semibold">Lý do nên chọn dịch vụ VISA - VNGroup Tourist</span>
+                        <i :class="{'ri-arrow-up-s-line': open, 'ri-arrow-down-s-line': !open}" class="text-2xl"></i>
+                    </button>
+                    
+                    <transition
+                        enter-active-class="transition ease-out duration-300"
+                        enter-from-class="opacity-0 transform scale-95"
+                        enter-to-class="opacity-100 transform scale-100"
+                        leave-active-class="transition ease-in duration-300"
+                        leave-from-class="opacity-100 transform scale-100"
+                        leave-to-class="opacity-0 transform scale-95"
+                    >
+                    <div id="reason-content"
+                        v-show="open"
+                        class="mt-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg text-left shadow-lg border border-gray-100"
+                    >
+                        <!-- Reason 1 -->
+                        <div class="mb-6 transform transition duration-500 hover:scale-105">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-blue-100 rounded-full">
+                                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-2 text-gray-800">Đội ngũ chuyên nghiệp</h3>
+                                    <p class="text-gray-600 leading-relaxed">
+                                        Với đội ngũ nhân viên visa giàu kinh nghiệm, được đào tạo các kỹ năng, kiến thức và nhiều năm kinh nghiệm trong lĩnh vực visa - VNGroup Tourist tự hào là đơn vị cung cấp dịch vụ làm visa du lịch uy tín.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reason 2 -->
+                        <div class="mb-6 transform transition duration-500 hover:scale-105">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-green-100 rounded-full">
+                                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-2 text-gray-800">Nhanh chóng & Tiết kiệm</h3>
+                                    <p class="text-gray-600 leading-relaxed">
+                                        Nhờ vào sự tận tâm và am hiểu sâu sắc về thủ tục xin visa, chúng tôi cam kết mang đến cho quý khách hàng dịch vụ làm visa nhanh chóng, tiết kiệm thời gian và chi phí, đồng thời đảm bảo tỷ lệ đậu visa cao nhất.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reason 3 -->
+                        <div class="transform transition duration-500 hover:scale-105">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-purple-100 rounded-full">
+                                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-2 text-gray-800">Bảo mật & Hỗ trợ</h3>
+                                    <p class="text-gray-600 leading-relaxed">
+                                        Sự hài lòng của khách hàng luôn là mục tiêu hàng đầu của chúng tôi. Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp mọi thắc mắc của quý khách trong suốt quá trình làm hồ sơ. Đồng thời bảo mật thông tin khách hàng một cách tuyệt đối.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </transition>
+                </div>
+                <!-- Add more FAQ items here -->
+                <div id="visa-content" class="mb-4">
+                  <button 
+                      @click="toggleVisaDocs" 
+                      class="flex justify-between items-center w-full p-4 bg-gray-200 rounded-lg focus:outline-none transition duration-300 hover:bg-gray-300"
+                  >
+                      <span id="visa-title" class="text-lg font-semibold">Những gì bạn cần cho Hồ sơ VISA</span>
+                      <i :class="{'ri-arrow-up-s-line': open2, 'ri-arrow-down-s-line': !open2}" class="text-2xl"></i>
+                  </button>
+                  
+                  <transition
+                      enter-active-class="transition ease-out duration-300"
+                      enter-from-class="opacity-0 transform scale-95"
+                      enter-to-class="opacity-100 transform scale-100"
+                      leave-active-class="transition ease-in duration-300"
+                      leave-from-class="opacity-100 transform scale-100"
+                      leave-to-class="opacity-0 transform scale-95"
+                  >
+                      <div
+                          v-show="open2"
+                          class="mt-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg text-left shadow-lg border border-gray-100"
+                      >
+                          <div class="mb-6 transform transition duration-500 hover:scale-105">
+                              <div class="flex items-start space-x-4">
+                                  <div class="flex-shrink-0">
+                                  <div class="p-3 bg-blue-100 rounded-full">
+                                      <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                      </svg>
+                                  </div>
+                                  </div>
+                                  <div>
+                                  <p class="text-gray-700 leading-relaxed">
+                                      Tờ khai xin cấp visa theo mẫu quy định của Đại sứ quán đã được điền đầy đủ thông tin.
+                                  </p>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="mb-6 transform transition duration-500 hover:scale-105">
+                              <div class="flex items-start space-x-4">
+                                  <div class="flex-shrink-0">
+                                  <div class="p-3 bg-green-100 rounded-full">
+                                      <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                                      </svg>
+                                  </div>
+                                  </div>
+                                  <div>
+                                  <p class="text-gray-700 leading-relaxed">
+                                      Passport (đã ký tên) còn thời hạn trên 6 tháng và còn ít nhất 3 trang trống.
+                                  </p>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!-- Reason 3 -->
+                          <div class="transform transition duration-500 hover:scale-105">
+                              <div class="flex items-start space-x-4">
+                                  <div class="flex-shrink-0">
+                                      <div class="p-3 bg-purple-100 rounded-full">
+                                          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                          </svg>
+                                      </div>
+                                  </div>
+                                  <div>
+                                      <h3 class="text-lg font-semibold mb-2 text-gray-800">Bảo mật & Hỗ trợ</h3>
+                                      <p class="text-gray-600 leading-relaxed">
+                                          Sự hài lòng của khách hàng luôn là mục tiêu hàng đầu của chúng tôi. Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp mọi thắc mắc của quý khách trong suốt quá trình làm hồ sơ. Đồng thời bảo mật thông tin khách hàng một cách tuyệt đối.
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </transition>
+              </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Workflow Section -->
     <section class="py-16 bg-gray-100">
       <div class="container mx-auto text-center  px-4">
-        <h2 id="workflow-title" class="tex-center text-4xl font-bold mb-8 text-center bg-gradient-to-r from-blue-900 via-cyan-900 to-gray-900 inline-block text-transparent bg-clip-text drop-shadow-lg leading-relaxed">Quy trình làm việc nhanh gọn</h2>
+        <h2 id="workflow-title" class="tex-center text-4xl font-bold mb-8 text-center bg-gradient-to-r from-blue-900 via-cyan-900 to-gray-900 inline-block text-transparent bg-clip-text drop-shadow-lg leading-relaxed">CÁC BƯỚC LÀM VISA TẠI VNGROUP TOURIST</h2>
         <div class="flex flex-wrap justify-center">
           <div v-for="(step, index) in workflowSteps" :key="index" class="w-full md:w-1/2 lg:w-1/4 p-4">
             <div class="bg-white rounded-lg p-6 shadow-lg text-center bg-custom-gradient transform transition duration-500 hover:scale-105">
@@ -443,103 +617,100 @@
 
 <script>
 import { ref, onMounted } from 'vue'
-// Import visa images
-import visa1 from '../assets/img/visa1.jpg';
-import visa2 from '../assets/img/visa2.jpg'; 
-import visa3 from '../assets/img/visa3.jpg';
-// Update this import to use URL
-import visaImage from '../assets/visa-card.jpg';
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
-// Import Swiper modules
-import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules'
+
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
+
+// import required modules
+import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules'
 import lottie from 'lottie-web'
 import 'animate.css'
+import visa1 from '../assets/img/visa1.jpg'
+import visa2 from '../assets/img/visa2.jpg'
+import visa3 from '../assets/img/visa3.jpg'
+
 export default {
-  name: 'VisaService',
   components: {
     Swiper,
     SwiperSlide,
   },
-  setup() {
-    const isModalOpen = ref(false)
-    const count = ref(0)
-    const formData = ref({
-      country: '',
-      maritalStatus: '',
-      birthInProvince: false,
-      travelHistory: [],
-      visaRejections: '',
-      currentJob: '',
-      averageIncome: '',
-      financialAbility: '',
-      name: '',
-      phone: '',
-      email: ''
-    })
-    
-    const faqs = ref([
-      {
-        question: 'What documents do I need for a visa application?',
-        answer: 'The required documents vary depending on the country and visa type. Generally, you\'ll need a valid passport, passport-sized photos, proof of funds, travel itinerary, and accommodation details.',
-        isOpen: false
+  data() {
+    return {
+      modules: [EffectCoverflow, Pagination, Autoplay], // Define modules here
+      isModalOpen: false,
+      count: 0,
+      open: false,
+      open2: false,
+      formData: {
+        country: '',
+        maritalStatus: '',
+        travelHistory: [],
+        currentJob: '',
+        averageIncome: '',
+        financialAbility: '',
+        name: '',
+        phone: '',
+        email: ''
       },
-      // Add more FAQs here
-    ])
-
-    const workflowSteps = ref([
-      {
-        id: 'receive',
-        title: '1. Nhận thông tin và tư vấn',
-        description: 'Gather all necessary details and provide expert advice'
-      },
-      {
-        id: 'profile',
-        title: '2. Bổ sung và hoàn thiện hồ sơ',
-        description: 'Add and complete customer profile review by department'
-      },
-      {
-        id: 'review',
-        title: '3. Hoàn tất Visa và kiểm duyệt',
-        description: 'Complete visa application and send to the review department'
-      },
-      {
-        id: 'results',
-        title: '4. Gửi kết quả đến khách hàng',
-        description: 'Send results to customers and complete the process'
-      }
-    ])
-
-    const slides = [
-      { img: visa1, alt: 'USA' },
-      { img: visa2, alt: 'Japan' },
-      { img: visa3, alt: 'France' },
-      { img: visa2, alt: 'Australia' }
-    ]
-
-    const toggleFaq = (index) => {
-      faqs.value[index].isOpen = !faqs.value[index].isOpen
+      slides: [
+        { img: visa1, alt: 'USA' },
+        { img: visa2, alt: 'Japan' },
+        { img: visa3, alt: 'France' },
+        { img: visa2, alt: 'Australia' }
+      ],
+      workflowSteps: [
+        {
+          id: 'receive',
+          title: '1. Đăng ký',
+          description: 'Điền Form thông tin đơn giản, nhanh chóng. Các thông tin được bảo mật một cách tuyệt đối an toàn.'
+        },
+        {
+          id: 'profile',
+          title: '2. Tư vấn',
+          description: 'Nhân viên sẽ liên hệ lại với bạn trong vòng 4h hoặc liên hệ qua Hotline 096 698 09 37/ Tổng đài miễn phí 1800 6700 '
+        },
+        {
+          id: 'review',
+          title: '3. Hoàn thiện hồ sơ',
+          description: 'Một nhân viên kinh nghiệm sẽ đồng hành và hỗ trợ bạn trong suốt quá trình hoàn thành hồ sơ'
+        },
+        {
+          id: 'results',
+          title: '4. Nhận visa',
+          description: 'Bạn sẽ nhận visa trực tiếp tại văn phòng VNGroup Tourist hoặc chuyển phát nhanh đến tận tay.'
+        }
+      ]
     }
-
-    const openModal = () => {
-      isModalOpen.value = true
-    }
-
-    const closeModal = () => {
-      isModalOpen.value = false
-    }
-
-    const submitForm = () => {
-      console.log('Form submitted:', formData.value)
+  },
+  methods: {
+    toggleFAQ() {
+      this.open = !this.open
+    },
+    toggleVisaDocs() {
+      this.open2 = !this.open2
+    },
+    openModal() {
+      this.isModalOpen = true
+    },
+    closeModal() {
+      this.isModalOpen = false
+    },
+    submitForm() {
+      console.log('Form submitted:', this.formData)
       alert('Form submitted successfully!')
-      closeModal()
-    }
-
-    const initializeLottie = () => {
+      this.closeModal()
+    },
+    getImageUrl(type = 'desktop') {
+      if (type === 'mobile') {
+        return new URL('../assets/visa-card-mobile.jpg', import.meta.url).href
+      }
+      return new URL('../assets/visa-card.jpg', import.meta.url).href
+    },
+    initializeLottie() {
       const animationUrls = {
         receive: 'https://assets2.lottiefiles.com/packages/lf20_u25cckyh.json',
         profile: 'https://assets2.lottiefiles.com/packages/lf20_khzniaya.json',
@@ -557,49 +728,28 @@ export default {
         })
       })
     }
+  },
+  mounted() {
+    this.initializeLottie()
+    
+    // Counter animation
+    const interval = setInterval(() => {
+      if (this.count < 195) this.count++
+    }, 20)
 
-    const handleConsultation = () => {
-      // Handle consultation registration
-      console.log('Register for consultation clicked')
-      // Add your consultation registration logic here
+    // Clear interval on component destroy using onBeforeUnmount
+    this.$options.beforeUnmount = () => {
+      clearInterval(interval)
     }
-
-    const getImageUrl = () => {
-      return new URL(`../assets/visa-card.jpg`, import.meta.url).href
-    }
-
-    onMounted(() => {
-      initializeLottie()
-      
-      // Counter animation
-      const interval = setInterval(() => {
-        if (count.value < 195) count.value++
-      }, 20)
-
-      return () => clearInterval(interval)
-    })
-
-    return {
-      isModalOpen,
-      count,
-      formData,
-      faqs,
-      workflowSteps,
-      toggleFaq,
-      submitForm,
-      handleConsultation,
-      // Swiper modules
-      SwiperEffectCoverflow: EffectCoverflow,
-      SwiperPagination: Pagination,
-      SwiperAutoplay: Autoplay,
-      openModal,
-      closeModal,
-      slides,
-      getImageUrl,
+  },
+  // Add beforeUnmount hook
+  beforeUnmount() {
+    // This will be called when component is about to be destroyed
+    if (this.$options.beforeUnmount) {
+      this.$options.beforeUnmount()
     }
   }
 }
-
 </script>
 
 <style scoped>
