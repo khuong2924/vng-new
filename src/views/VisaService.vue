@@ -9,26 +9,26 @@
     </section>
 
     <!-- Countries Supported Section -->
-    <section class="py-4">
+    <section class="py-2">
       <div class="container mx-auto px-16 flex flex-wrap items-center">
         <div id="countries-supported" class="w-full lg:w-2/5 mb-0 lg:mb-4">
-          <div class="relative rounded-lg p-24 shadow-lg transform transition duration-500 hover:scale-105 h-[330px]">
+          <div class="relative rounded-lg p-24 shadow-lg transform transition duration-500 hover:scale-105 h-[240px]">
             <!-- Background image div - removed overflow-hidden -->
-            <div class="absolute inset-0 z-0 w-full h-full">
+            <div class="absolute inset-0 z-0 w-full h-full overflow-visible">
               <img 
                 :src="getImageUrl()"
                 alt="Visa Card" 
-                class="w-full h-full object-cover object-center rounded-lg"
+                class="w-full h-full absolute object-cover rounded-lg"
               >
             </div>
             
             <!-- Content -->
-            <div class="relative z-2 text-white mr-32 ml-20 mt-20">
+            <div class="relative z-2 text-white mr-32 ml-5 mt-10">
 
-              <div id="countries-supported-count" class="text-7xl ml-4 font-extrabold mb-4">
+              <div id="countries-supported-count" class="text-6xl ml-0 font-extrabold mb-0">
                 <span class="bg-gradient-to-r from-blue-500 via-cyan-300 to-gray-300 inline-block text-transparent bg-clip-text drop-shadow-lg">{{ count }}+</span>
               </div>
-              <p id="countries-supported-text" class="ml-4 text-2lg font-medium tracking-wide w-64">
+              <p id="countries-supported-text" class="ml-0 text-2lg font-medium tracking-wide w-64">
                 <span class="motion-preset-typewriter-[24] bg-gradient-to-r from-blue-500 via-cyan-300 to-gray-300 inline-block text-transparent bg-clip-text drop-shadow-lg">quốc gia được hỗ trợ</span>
               </p>
             </div>
@@ -172,10 +172,19 @@
     </section>
 
 
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-white mt-0">
         <div class="container text-center mx-auto px-4" data-aos="fade-up">
-          <h2 id="reason-title" class="text-2xl font-bold mb-8 text-center bg-gradient-to-r from-blue-900 via-cyan-900 to-gray-900 inline-block text-transparent bg-clip-text drop-shadow-lg leading-relaxed">Hãy để chúng tôi lo liệu mọi thứ, bạn chỉ cần chuẩn bị hành lý và sẵn sàng cho chuyến đi của mình!</h2>
-            <div class="max-w-3xl mx-auto">
+          <h2 id="reason-title" class="text-2xl font-bold mb-8 text-center bg-gradient-to-r from-blue-900 via-cyan-900 to-gray-900 text-transparent bg-clip-text drop-shadow-lg leading-relaxed flex items-center">
+            <span class="w-3/5">
+                Hãy để chúng tôi lo liệu mọi thứ, bạn chỉ cần chuẩn bị hành lý và sẵn sàng cho chuyến đi của mình!
+            </span>
+            <div id="lottie-travel" class="w-2/5 flex justify-center">
+                <div class="inline-block w-10 h-10"></div> <!-- Lottie animation container -->
+            </div>
+          </h2>
+
+        
+        <div class="max-w-3xl mx-auto"> 
                 <div id="reason-content" class="mb-4">
                     <button 
                         @click="toggleFAQ" 
@@ -983,7 +992,8 @@ export default {
         receive: 'https://assets2.lottiefiles.com/packages/lf20_u25cckyh.json',
         profile: 'https://assets2.lottiefiles.com/packages/lf20_khzniaya.json',
         review: '../src/components/icons/review-gif.json',
-        results: 'https://assets2.lottiefiles.com/packages/lf20_9wpyhdzo.json'
+        results: 'https://assets2.lottiefiles.com/packages/lf20_9wpyhdzo.json',
+        travel: '../src/components/icons/travel-animations.json'
       }
 
       Object.entries(animationUrls).forEach(([key, url]) => {
